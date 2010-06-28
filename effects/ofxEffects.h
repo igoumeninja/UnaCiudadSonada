@@ -21,8 +21,9 @@ class ofxEffects {
 		void	color();		
 		void	start();
 		void	drawLine();		
+		void	drawLineVertical();				
 
-		int translateY;
+		int translateY, translateX;
 	private: 
 
 

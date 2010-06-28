@@ -89,6 +89,8 @@ class granCieloApp : public ofBaseApp{
 		bool frameByframe;
 		bool fbo0, fbo1, fbo2, fbo3, fbo4, fbo5, fbo6;
 		
+		int alphaFBO2;
+		
 		//##########	Beat  #################
 		ofTrueTypeFont testFont, testFontSmall;
 		string str,beatStr;

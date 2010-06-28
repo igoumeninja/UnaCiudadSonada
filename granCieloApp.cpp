@@ -4,7 +4,8 @@
 void granCieloApp::setup(){
 	{
 		//	FBO
-		fbo0 = fbo1 = fbo2 = false;
+		fbo0 = fbo1 = fbo2 = fbo3 = fbo4 = fbo5 = false;
+		alphaFBO2 = 0;
 		//	Arbol
 		arbolView = 0;
 		
@@ -191,6 +192,9 @@ void granCieloApp::update(){
 		{
 			if ( m.getAddress() == "/drawLine" )	{
 				Effect.drawLine();
+			}		
+			if ( m.getAddress() == "/drawLineVertical" )	{
+				Effect.drawLineVertical();
 			}		
 			if ( m.getAddress() == "/startEffect" )	{
 				Effect.start();
@@ -677,45 +681,41 @@ void granCieloApp::draw(){
 			if ( fbo0 )	{
 				if ( doRender ) {		
 					rm0.startOffscreenDraw();
-//					if ( ofGetFrameNum() % 10 == 0 ) {
-//						ofBackground(0,0,0);
-//						}	{
 						ofFill();
-//						ofSetColor(255,255,255,a2);						
 						ofSetColor(0xFFFFFF);
 						charco.draw(0,0);
-//						}						
 					rm0.endOffscreenDraw();
 				}
 				rm0.drawOutputDiagnostically(quad0.x, quad0.y, quad0.width, quad0.height);	
 			}
-		}	//	FBO 0 charco
+		}	//	FBO 0 catastrofe
 		{
 			if ( fbo1) {
 				if ( doRender ) {		
 					rm1.startOffscreenDraw();
 						ofFill();
-						ofSetColor(255,255,255,a2);												
-						//ofSetColor(0xFFFFFF);
+						ofSetColor(0xFFFFFF);
 						tejados.draw(0,0);						
 					rm1.endOffscreenDraw();
 				}
 				rm1.drawOutputDiagnostically(quad1.x, quad1.y, quad1.width, quad1.height);	
 			}
-		}	//	FBO 1 tejados
+		}	//	FBO 1 desagua
 		{
 			if ( fbo2 )	{
 				if ( doRender ) {		
 					rm2.startOffscreenDraw();
+						if ( ofGetFrameNum() % 10 == 0)	{
+							alphaFBO2 ++;
+						}
 						ofFill();
-						ofSetColor(255,255,255,a2);												
-						//ofSetColor(0xFFFFFF);
+						ofSetColor(255,255,255,alphaFBO2);												
 						ventanaRoja.draw(0,0);						
 					rm2.endOffscreenDraw();
-				}
+				} 
 				rm2.drawOutputDiagnostically(quad2.x, quad2.y, quad2.width, quad2.height);	
-			}
-		}	//	FBO 2 ventana roja
+			}			
+		}	//	FBO 2 ventana rota
 		{
 			if ( fbo3 )	{
 				if ( doRender ) {		
@@ -907,8 +907,8 @@ void granCieloApp::draw(){
 			glPushMatrix();
 			ofSetColor(0xffffff);
 			glTranslatef(feedbackSpeedX,feedbackSpeedY,0);
-			texScreen.draw(0,0,ofGetWidth(), ofGetHeight());
-			//texScreen.draw(0,0,3840, 1024);			
+			//texScreen.draw(0,0,ofGetWidth(), ofGetHeight());
+			texScreen.draw(0,0,3840, 1024);			
 			//texScreen.draw(0,0,1920,1080);
 			glPopMatrix();
 		}
