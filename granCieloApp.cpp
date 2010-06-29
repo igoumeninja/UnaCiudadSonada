@@ -116,9 +116,10 @@ void granCieloApp::setup(){
 		rm4.allocateForNScreens(1, 404, 396); //the first dedicate the screens the other 2 are the dimension of the image or of the video
 		rm4.loadFromXml("fboSettings4.xml");
 		quad4  = ofRectangle(0, 230, 200, 200);
-		rm5.allocateForNScreens(2, 320, 280); //the first dedicate the screens the other 2 are the dimension of the image or of the video
+		
+		rm5.allocateForNScreens(4, 320, 280); //the first dedicate the screens the other 2 are the dimension of the image or of the video
 		rm5.loadFromXml("fboSettings5.xml");
-		quad5  = ofRectangle(230, 230, 200, 200);
+		quad5  = ofRectangle(430, 230, 200, 200);
 		rm6.allocateForNScreens(3, 500, 500); //the first dedicate the screens the other 2 are the dimension of the image or of the video
 		rm6.loadFromXml("fboSettings5.xml");
 		quad6  = ofRectangle(460, 230, 200, 200);
@@ -681,6 +682,9 @@ void granCieloApp::draw(){
 			if ( fbo0 )	{
 				if ( doRender ) {		
 					rm0.startOffscreenDraw();
+						if ( ofGetFrameNum() % 5 == 0)	{
+							ofBackground(0,0,0);
+						}
 						ofFill();
 						ofSetColor(0xFFFFFF);
 						charco.draw(0,0);

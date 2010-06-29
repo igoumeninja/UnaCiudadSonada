@@ -22,14 +22,15 @@ renderManager::renderManager(){
 //---------------------------------------------------------------------------
 void renderManager::allocateForNScreens(int numScreens, int renderWidth, int renderHeight){
     if( numScreens < 1){
-        printf("renderManager::allocateForNScreens - you need at lease one screen!\n");
+        printf("renderManager::allocateForNScreens - you need at least one screen!\n");
         return;
     }
     width   = renderWidth;
     height  = renderHeight;
 
     screenWidth  = (float)width / (float)numScreens;
-    screenHeight = height;
+    //screenHeight  = (float)height / (float)numScreens;	
+	screenHeight = height;
 
     myOffscreenTexture.allocate(renderWidth, renderHeight, false);
     //myOffscreenTexture.allocate(screenWidth, screenHeight, false);
@@ -40,7 +41,7 @@ void renderManager::allocateForNScreens(int numScreens, int renderWidth, int ren
 
     float w_d_3 = (float)width / (float)nScreens;
     float inner_d_3 = 1.0f / (float)nScreens;
-    for (int i = 0; i < nScreens; i++){
+    for (int i = 0; i < nScreens; i++){	
 
         inputPositions[i]  = new ofPoint[4];
         outputPositions[i] = new ofPoint[4];
