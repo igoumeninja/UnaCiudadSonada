@@ -82,14 +82,17 @@ class granCieloApp : public ofBaseApp{
         renderManager rm0, rm1, rm2, rm3, rm4, rm5, rm6;
 		ofRectangle quad0, quad1, quad2, quad3, quad4, quad5, quad6;		
 
-		ofImage charco, tejados, ventanaRoja, reloj, textura;
-		ofVideoPlayer 		illusion, ormigas;
+		ofImage				charco, tejados, ventanaRoja, reloj, textura;
+		ofVideoPlayer 		ciudaddestruidaconlluvia, illusion, ormigas;
 
         bool toggleImage, doRender;
 		bool frameByframe;
 		bool fbo0, fbo1, fbo2, fbo3, fbo4, fbo5, fbo6;
 		
 		int alphaFBO2;
+		
+		//############  Deseo   ###################
+		string deseo;
 		
 		//##########	Beat  #################
 		ofTrueTypeFont testFont, testFontSmall;

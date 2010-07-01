@@ -147,7 +147,7 @@ void renderManager::drawOutputDiagnostically(float x, float y, float w, float h)
 				ofFill();
 				ofSetColor(255,0,0);
 				for (int j = 0; j < 4; j++){
-					ofCircle(  outputPositions[i][j].x , outputPositions[i][j].y, 33 );
+					ofCircle(  outputPositions[i][j].x , outputPositions[i][j].y, 30 );
 				}
 			}
         glPopMatrix();

@@ -96,33 +96,44 @@ void granCieloApp::setup(){
 	Effect.setup();
 	//	LSystem
 	LSystem.setup();	
+	
+	
+	//##############################################
+	//
+	//                  Deseo
+	//
+	//
+	deseo = "Quierro hacer la oscuridad luz";
+	//
+	//
+	//
+	//##############################################
 
 	//	FBO	
 	{
 		doRender = true;
 
-		rm0.allocateForNScreens(1, 262, 338); //the first dedicate the screens
+		rm0.allocateForNScreens(1, 320, 280); //the first dedicate the screens
 		rm0.loadFromXml("fboSettings0.xml");
-		quad0  = ofRectangle(0,0,200,200);
+		quad0  = ofRectangle(1600,400,200,200);
 		rm1.allocateForNScreens(1, 500,333); //the first dedicate the screensf
 		rm1.loadFromXml("fboSettings1.xml");
-		quad1  = ofRectangle(230,0,200,200);
+		quad1  = ofRectangle(1600,400,200,200);
 		rm2.allocateForNScreens(1, 322,422); //the first dedicate the screens
 		rm2.loadFromXml("fboSettings2.xml");
-		quad2  = ofRectangle(460,0,200,200);
+		quad2  = ofRectangle(1600,400,200,200);
 		rm3.allocateForNScreens(1, 320,280); //the first dedicate the screens the other 2 are the dimension of the image or of the video
 		rm3.loadFromXml("fboSettings3.xml");
-		quad3  = ofRectangle(690,0,200,200);
-		rm4.allocateForNScreens(1, 404, 396); //the first dedicate the screens the other 2 are the dimension of the image or of the video
+		quad3  = ofRectangle(1600,400,200,200);
+		rm4.allocateForNScreens(1, 400, 396); //the first dedicate the screens the other 2 are the dimension of the image or of the video
 		rm4.loadFromXml("fboSettings4.xml");
-		quad4  = ofRectangle(0, 230, 200, 200);
-		
-		rm5.allocateForNScreens(4, 320, 280); //the first dedicate the screens the other 2 are the dimension of the image or of the video
+		quad4  = ofRectangle(1600, 400, 200, 200);		
+		rm5.allocateForNScreens(1, 320, 280); //the first dedicate the screens the other 2 are the dimension of the image or of the video
 		rm5.loadFromXml("fboSettings5.xml");
-		quad5  = ofRectangle(430, 230, 200, 200);
-		rm6.allocateForNScreens(3, 500, 500); //the first dedicate the screens the other 2 are the dimension of the image or of the video
-		rm6.loadFromXml("fboSettings5.xml");
-		quad6  = ofRectangle(460, 230, 200, 200);
+		quad5  = ofRectangle(1600, 400, 200, 200);
+		rm6.allocateForNScreens(1, 500, 500); //the first dedicate the screens the other 2 are the dimension of the image or of the video
+		rm6.loadFromXml("fboSettings6.xml");
+		quad6  = ofRectangle(1600,400, 200, 200);
 
 		//Imagenes
 		tejados.loadImage("images/tejados500x333.png");
@@ -132,6 +143,7 @@ void granCieloApp::setup(){
 		textura.loadImage("images/aqua500x500.jpg");					
 
 		//Video
+		ciudaddestruidaconlluvia.loadMovie("videos/ciudaddestruidaconlluvia.avi");		
 		illusion.loadMovie("videos/illusion320x280.mov");
 		ormigas.loadMovie("videos/ormigas.mov");		
 	}
@@ -199,6 +211,17 @@ void granCieloApp::update(){
 			}		
 			if ( m.getAddress() == "/startEffect" )	{
 				Effect.start();
+			}		
+			if ( m.getAddress() == "/deseo" )	{
+				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // GL_SRC_ALPHA_SATURATE,GL_ONE     GL_SRC_ALPHA, GL_ONE
+				ofFill();
+				strPosX = ofRandom(0, ofGetWidth());
+				strPosY = ofRandom(0, ofGetHeight());
+				ofSetColor(255,255,255,255);	// even
+				ofPushMatrix();
+				ofTranslate(strPosX, strPosY, 0);
+				testFontSmall.drawString(deseo,0, 0);		
+				ofPopMatrix();
 			}		
 		}	//	effects
 		{
@@ -682,12 +705,9 @@ void granCieloApp::draw(){
 			if ( fbo0 )	{
 				if ( doRender ) {		
 					rm0.startOffscreenDraw();
-						if ( ofGetFrameNum() % 5 == 0)	{
-							ofBackground(0,0,0);
-						}
-						ofFill();
+						ciudaddestruidaconlluvia.idleMovie();
 						ofSetColor(0xFFFFFF);
-						charco.draw(0,0);
+						ciudaddestruidaconlluvia.draw(0,0, 320,280);
 					rm0.endOffscreenDraw();
 				}
 				rm0.drawOutputDiagnostically(quad0.x, quad0.y, quad0.width, quad0.height);	
@@ -929,7 +949,7 @@ void granCieloApp::syncStudies ()	{
 		ofSetColor(r1,g1,b1,a1);	// even
 		ofPushMatrix();
 		ofTranslate(strPosX, strPosY, 0);
-		testFontSmall.drawString(beatStr,0, 0);
+		testFontSmall.drawString(beatStr,0, 0);		
 		ofPopMatrix();
 }
 void granCieloApp::takePictures()	{
@@ -944,7 +964,15 @@ void granCieloApp::takePictures()	{
 }
 void granCieloApp::keyPressed  (int key){
 
-	if ( key == '0' ) {		fbo0 = !fbo0;	}		
+	if ( key == '0' ) {		
+		fbo0 = !fbo0;	
+		if(fbo0){
+			ciudaddestruidaconlluvia.play();
+		} else {
+			ciudaddestruidaconlluvia.stop();			
+		}		
+	
+	}		
 	if ( key == '1' ) {		fbo1 = !fbo1;	}		
 	if ( key == '2' ) {		fbo2 = !fbo2;	}		
 	if ( key == '3' ) {		
