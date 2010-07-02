@@ -119,13 +119,13 @@ void granCieloApp::setup(){
 		rm1.allocateForNScreens(1, 500,333); //the first dedicate the screensf
 		rm1.loadFromXml("fboSettings1.xml");
 		quad1  = ofRectangle(1600,400,200,200);
-		rm2.allocateForNScreens(1, 322,422); //the first dedicate the screens
+		rm2.allocateForNScreens(2, 322,422); //the first dedicate the screens
 		rm2.loadFromXml("fboSettings2.xml");
 		quad2  = ofRectangle(1600,400,200,200);
-		rm3.allocateForNScreens(1, 320,280); //the first dedicate the screens the other 2 are the dimension of the image or of the video
+		rm3.allocateForNScreens(2, 320,280); //the first dedicate the screens the other 2 are the dimension of the image or of the video
 		rm3.loadFromXml("fboSettings3.xml");
 		quad3  = ofRectangle(1600,400,200,200);
-		rm4.allocateForNScreens(1, 400, 396); //the first dedicate the screens the other 2 are the dimension of the image or of the video
+		rm4.allocateForNScreens(2, 400, 396); //the first dedicate the screens the other 2 are the dimension of the image or of the video
 		rm4.loadFromXml("fboSettings4.xml");
 		quad4  = ofRectangle(1600, 400, 200, 200);		
 		rm5.allocateForNScreens(1, 320, 280); //the first dedicate the screens the other 2 are the dimension of the image or of the video
@@ -156,7 +156,7 @@ void granCieloApp::setup(){
 		rm13.allocateForNScreens(1, 500, 500); //the first dedicate the screens
 		rm13.loadFromXml("fboSettings13.xml");
 		quad13  = ofRectangle(1600,400,200,200);
-		rm14.allocateForNScreens(2, 500, 500); //the first dedicate the screens
+		rm14.allocateForNScreens(1, 500, 500); //the first dedicate the screens
 		rm14.loadFromXml("fboSettings14.xml");
 		quad14  = ofRectangle(1600, 400, 200, 200);		
 		rm15.allocateForNScreens(2, 500, 500); //the first dedicate the screens
@@ -165,7 +165,7 @@ void granCieloApp::setup(){
 		rm16.allocateForNScreens(1, 500, 500); //the first dedicate the screens
 		rm16.loadFromXml("fboSettings16.xml");
 		quad16  = ofRectangle(1600,400, 200, 200);
-		rm17.allocateForNScreens(2, 500, 500); //the first dedicate the screens the other 2 are the dimension of the image or of the video
+		rm17.allocateForNScreens(1, 500, 500); //the first dedicate the screens the other 2 are the dimension of the image or of the video
 		rm17.loadFromXml("fboSettings17.xml");
 		quad17  = ofRectangle(1600,400, 200, 200);
 		rm18.allocateForNScreens(1, 500, 500); //the first dedicate the screens the other 2 are the dimension of the image or of the video
@@ -274,6 +274,7 @@ void granCieloApp::update(){
 		ofxOscMessage m;
 		receiver.getNextMessage( &m ); 
 		{
+			if ( m.getAddress() == "/fbo" )		{	fbo0=fbo1=fbo2=fbo3=fbo4=fbo5=fbo6=fbo7=fbo8=fbo9=fbo10=fbo11=fbo12=fbo13=fbo14=fbo15=fbo16=fbo17=fbo18=fbo19=fbo20=fbo21=fbo22=fbo23=fbo24=fbo25=fbo26=fbo27=fbo28=fbo29= FALSE;	}			
 			if ( m.getAddress() == "/fbo0" )	{
 				fbo0 = !fbo0;	
 				if(fbo0){
