@@ -4,8 +4,10 @@
 void granCieloApp::setup(){
 	{
 		//	FBO
-		fbo0 = fbo1 = fbo2 = fbo3 = fbo4 = fbo5 = fbo6 = fbo7 = false;
-		alphaFBO2 = 0;
+		fbo0 = fbo1 = fbo2 = fbo3 = fbo4 = fbo5 = fbo6 = fbo7 = fbo8 = fbo9 = false;
+		fbo10 = fbo11 = fbo12 = fbo13 = fbo14 = fbo15 = fbo16 = fbo17 = fbo18 = fbo19 = false;
+		fbo20 = fbo21 = fbo22 = fbo23 = fbo24 = fbo25 = fbo26 = fbo27 = fbo28 = fbo29 = false;				
+		afbo6 = 0, afbo7 = 0, afbo8 = 0, alphaFBO2 = 0;
 		//	Arbol
 		arbolView = 0;
 		
@@ -311,7 +313,16 @@ void granCieloApp::update(){
 			if ( m.getAddress() == "/fbo26" )	{	fbo26 = !fbo26;	}
 			if ( m.getAddress() == "/fbo27" )	{	fbo27 = !fbo27;	}			
 			if ( m.getAddress() == "/fbo28" )	{	fbo28 = !fbo28;	}
-			if ( m.getAddress() == "/fbo29" )	{	fbo29 = !fbo29;	}			
+			if ( m.getAddress() == "/fbo29" )	{	fbo29 = !fbo29;	}
+			
+			if ( m.getAddress() == "/afbo7" )	{
+				float afbo7temp = m.getArgAsFloat(0);
+				afbo7 = int(afbo7temp);
+				
+				//afbo7 = m.getArgAsInt32(0);	
+				//cout << afbo7 << endl;
+			}			
+						
 		}	//	FBO
 		{
 			if ( m.getAddress() == "/drawLine" )	{
@@ -798,6 +809,34 @@ void granCieloApp::update(){
 				b8 = ofMap(midi104, 0, 127, 0, 255);			
 			}
 		}	//  MIDI r, g, b. a		
+		{
+			if ( m.getAddress() == "/a8" )		{
+				float a8temp = int(m.getArgAsFloat(0));
+				a8 = int(a8temp);
+			}		
+			if ( m.getAddress() == "/r8" )		{
+				float r8temp = int(m.getArgAsFloat(0));
+				r8 = int(r8temp);
+			}		
+			if ( m.getAddress() == "/g8" )		{
+				float g8temp = int(m.getArgAsFloat(0));
+				g8 = int(g8temp);
+			}		
+			if ( m.getAddress() == "/b8" )		{
+				float b8temp = int(m.getArgAsFloat(0));
+				b8 = int(b8temp);
+			}		
+		}	//	rgb directamente
+		{
+			if ( m.getAddress() == "/background" )		{
+			
+				int rBack = m.getArgAsInt32(0);
+				int gBack = m.getArgAsInt32(1);
+				int bBack = m.getArgAsInt32(2);								
+				ofBackground(rBack, gBack, bBack);
+			}		
+		}	//	background
+
 	}	
 }
 void granCieloApp::draw(){
@@ -893,9 +932,12 @@ void granCieloApp::draw(){
 			if ( fbo6 )	{
 				if ( doRender ) {		
 					rm6.startOffscreenDraw();
+						if ( ofGetFrameNum() % 60 == 0)	{
+							afbo6 ++;
+						}
 						ofFill();
-						ofSetColor(0xFFFFFF);
-						textura.draw(0,0);						
+						ofSetColor(255,255,255,afbo6);												
+						ventanaRoja.draw(0,0);						
 					rm6.endOffscreenDraw();
 				}
 				rm6.drawOutputDiagnostically(quad6.x, quad6.y, quad6.width, quad6.height);	
@@ -905,9 +947,13 @@ void granCieloApp::draw(){
 			if ( fbo7 )	{
 				if ( doRender ) {		
 					rm7.startOffscreenDraw();
+						if ( ofGetFrameNum() % 60 == 0)	{
+							afbo7 ++;
+						}
 						ofFill();
-						ofSetColor(255, 255, 0);
-						ofRect(0,0,500,500);
+						ofSetColor(255,255,255,afbo7);												
+						ventanaRoja.draw(0,0);						
+						
 					rm7.endOffscreenDraw();
 				}
 				rm7.drawOutputDiagnostically(quad7.x, quad7.y, quad7.width, quad7.height);	
@@ -917,9 +963,12 @@ void granCieloApp::draw(){
 			if ( fbo8 )	{
 				if ( doRender ) {		
 					rm8.startOffscreenDraw();
+						if ( ofGetFrameNum() % 60 == 0)	{
+							afbo8 ++;
+						}
 						ofFill();
-						ofSetColor(0, 255, 0);
-						ofRect(0,0,500,500);
+						ofSetColor(255,255,255,afbo8);												
+						ventanaRoja.draw(0,0);						
 					rm8.endOffscreenDraw();
 				}
 				rm8.drawOutputDiagnostically(quad8.x, quad8.y, quad8.width, quad8.height);	
@@ -1181,7 +1230,7 @@ void granCieloApp::draw(){
 			}
 		}	//	FBO 29
 
-	}	//	adding to FBO
+	}	//	FBO Manager
 	if	(view_fillBackground)	{
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // GL_SRC_ALPHA_SATURATE,GL_ONE     GL_SRC_ALPHA, GL_ONE
 		ofFill();	
@@ -1596,7 +1645,7 @@ void granCieloApp::keyPressed  (int key){
 		}
 	}		
 	if(key == 'b' or key == 'B'){
-		ofBackground(0,0,0);
+		ofBackground(255, 255, 255);
 	}	
 }
 void granCieloApp::keyReleased(int key){

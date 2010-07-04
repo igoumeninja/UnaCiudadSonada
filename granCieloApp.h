@@ -95,7 +95,8 @@ class granCieloApp : public ofBaseApp{
 		bool fbo10, fbo11, fbo12, fbo13, fbo14, fbo15, fbo16, fbo17, fbo18, fbo19;		
 		bool fbo20, fbo21, fbo22, fbo23, fbo24, fbo25, fbo26, fbo27, fbo28, fbo29;		
 		
-		int alphaFBO2;
+		int alphaFBO2, afbo6, afbo7, afbo8;
+		
 		
 		//############  Deseo   ###################
 		string deseo;
