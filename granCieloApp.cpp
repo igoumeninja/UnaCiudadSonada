@@ -118,7 +118,7 @@ void granCieloApp::setup(){
 		rm0.allocateForNScreens(1, 320, 280); //the first dedicate the screens
 		rm0.loadFromXml("fboSettings0.xml");
 		quad0  = ofRectangle(1600,400,200,200);
-		rm1.allocateForNScreens(1, 500,333); //the first dedicate the screensf
+		rm1.allocateForNScreens(2, 3507, 1350); //the first dedicate the screensf
 		rm1.loadFromXml("fboSettings1.xml");
 		quad1  = ofRectangle(1600,400,200,200);
 		rm2.allocateForNScreens(2, 322,422); //the first dedicate the screens
@@ -130,7 +130,7 @@ void granCieloApp::setup(){
 		rm4.allocateForNScreens(2, 400, 396); //the first dedicate the screens the other 2 are the dimension of the image or of the video
 		rm4.loadFromXml("fboSettings4.xml");
 		quad4  = ofRectangle(1600, 400, 200, 200);		
-		rm5.allocateForNScreens(1, 320, 280); //the first dedicate the screens the other 2 are the dimension of the image or of the video
+		rm5.allocateForNScreens(1, 430, 660); //the first dedicate the screens the other 2 are the dimension of the image or of the video
 		rm5.loadFromXml("fboSettings5.xml");
 		quad5  = ofRectangle(1600, 400, 200, 200);
 		rm6.allocateForNScreens(2, 500, 500); //the first dedicate the screens the other 2 are the dimension of the image or of the video
@@ -213,12 +213,15 @@ void granCieloApp::setup(){
 		charco.loadImage("images/charco262x338.png");
 		ventanaRoja.loadImage("images/ventanaRoja322x422.png");	
 		reloj.loadImage("images/reloj404x396.png");			
-		textura.loadImage("images/aqua500x500.jpg");					
+		textura.loadImage("images/aqua500x500.jpg");
+		tejadosInvierno.loadImage("images/TejadoInvierno_Textura3507x1350.jpg");
+		montanas.loadImage("images/montanas.jpg");
 
 		//Video
 		ciudaddestruidaconlluvia.loadMovie("videos/ciudaddestruidaconlluvia.avi");		
 		illusion.loadMovie("videos/illusion320x280.mov");
-		ormigas.loadMovie("videos/ormigas.mov");		
+		ormigas.loadMovie("videos/ormigas.mov");	
+		floresVideo.loadMovie("videos/FloresYHojasQueCrecen430x660.avi");		
 	}
 	
 	ofBackground(r8,g8,b8);
@@ -259,13 +262,6 @@ void granCieloApp::setup(){
 	
 }
 void granCieloApp::update(){
-
-	if	(circleView)	{
-		for (int i = 0; i < 10; i++){
-			circle[i].update();
-		}
-	}
-	
 	//OSC
 	for ( int i=0; i<NUM_MSG_STRINGS; i++ )	{
 		if ( timers[i] < ofGetElapsedTimef() )
@@ -276,54 +272,158 @@ void granCieloApp::update(){
 		ofxOscMessage m;
 		receiver.getNextMessage( &m ); 
 		{
-			if ( m.getAddress() == "/fbo" )		{	fbo0=fbo1=fbo2=fbo3=fbo4=fbo5=fbo6=fbo7=fbo8=fbo9=fbo10=fbo11=fbo12=fbo13=fbo14=fbo15=fbo16=fbo17=fbo18=fbo19=fbo20=fbo21=fbo22=fbo23=fbo24=fbo25=fbo26=fbo27=fbo28=fbo29= FALSE;	}			
-			if ( m.getAddress() == "/fbo0" )	{
-				fbo0 = !fbo0;	
+			if ( m.getAddress() == "/fbo" )		{	
+				fbo0=fbo1=fbo2=fbo3=fbo4=fbo5=fbo6=fbo7=fbo8=fbo9=fbo10=fbo11=fbo12=fbo13=fbo14=fbo15=fbo16=fbo17=fbo18=fbo19=fbo20=fbo21=fbo22=fbo23=fbo24=fbo25=fbo26=fbo27=fbo28=fbo29= FALSE;	
+			}			
+			if ( m.getAddress() == "/fbo0" )	{	int fboStatus = m.getArgAsInt32(0);
+				if (fboStatus == 1)		{	fbo0 = TRUE;	}	
+				if	( fboStatus == 0 )	{	fbo0 = FALSE;	}
 				if(fbo0){
 					ciudaddestruidaconlluvia.play();
 				} else {
 					ciudaddestruidaconlluvia.stop();			
-				}		
+				}						
+			}						
+
+			if ( m.getAddress() == "/fbo1" )	{	int fboStatus = m.getArgAsInt32(0);
+				if (fboStatus == 1)		{	fbo1 = TRUE;	}	
+				if	( fboStatus == 0 )	{	fbo1 = FALSE;	}
+			}						
+			if ( m.getAddress() == "/fbo2" )	{	int fboStatus = m.getArgAsInt32(0);
+				if (fboStatus == 1)		{	fbo2 = TRUE;	}	
+				if	( fboStatus == 0 )	{	fbo2 = FALSE;	}
+			}						
+			if ( m.getAddress() == "/fbo3" )	{	int fboStatus = m.getArgAsInt32(0);
+				if (fboStatus == 1)		{	fbo3 = TRUE;	}	
+				if	( fboStatus == 0 )	{	fbo3 = FALSE;	}
+			}						
+			if ( m.getAddress() == "/fbo4" )	{	int fboStatus = m.getArgAsInt32(0);
+				if (fboStatus == 1)		{	fbo4 = TRUE;	}	
+				if	( fboStatus == 0 )	{	fbo4 = FALSE;	}
+			}						
+			if ( m.getAddress() == "/fbo5" )	{	int fboStatus = m.getArgAsInt32(0);
+				if (fboStatus == 1)		{	fbo5 = TRUE;	}	
+				if	( fboStatus == 0 )	{	fbo5 = FALSE;	}
+				if(fbo5){
+					floresVideo.play();
+				} else {
+					floresVideo.stop();			
+				}						
+			}						
+			if ( m.getAddress() == "/fbo6" )	{	int fboStatus = m.getArgAsInt32(0);
+				if (fboStatus == 1)		{	fbo6 = TRUE;	}	
+				if	( fboStatus == 0 )	{	fbo6 = FALSE;	}
+			}						
+			if ( m.getAddress() == "/fbo7" )	{	int fboStatus = m.getArgAsInt32(0);
+				if (fboStatus == 1)		{	fbo7 = TRUE;	}	
+				if	( fboStatus == 0 )	{	fbo7 = FALSE;	}
+			}						
+			if ( m.getAddress() == "/fbo8" )	{	int fboStatus = m.getArgAsInt32(0);
+				if (fboStatus == 1)		{	fbo8 = TRUE;	}	
+				if	( fboStatus == 0 )	{	fbo8 = FALSE;	}
+			}						
+			if ( m.getAddress() == "/fbo9" )	{	int fboStatus = m.getArgAsInt32(0);
+				if (fboStatus == 1)		{	fbo9 = TRUE;	}	
+				if	( fboStatus == 0 )	{	fbo9 = FALSE;	}
+			}						
+			if ( m.getAddress() == "/fbo10" )	{	int fboStatus = m.getArgAsInt32(0);
+				if (fboStatus == 1)		{	fbo10 = TRUE;	}	
+				if	( fboStatus == 0 )	{	fbo10 = FALSE;	}
+			}						
+			if ( m.getAddress() == "/fbo11" )	{	int fboStatus = m.getArgAsInt32(0);
+				if (fboStatus == 1)		{	fbo11 = TRUE;	}	
+				if	( fboStatus == 0 )	{	fbo11 = FALSE;	}
+			}						
+			if ( m.getAddress() == "/fbo12" )	{	int fboStatus = m.getArgAsInt32(0);
+				if (fboStatus == 1)		{	fbo12 = TRUE;	}	
+				if	( fboStatus == 0 )	{	fbo12 = FALSE;	}
+			}						
+			if ( m.getAddress() == "/fbo13" )	{	int fboStatus = m.getArgAsInt32(0);
+				if (fboStatus == 1)		{	fbo13 = TRUE;	}	
+				if	( fboStatus == 0 )	{	fbo13 = FALSE;	}
+			}						
+			if ( m.getAddress() == "/fbo14" )	{	int fboStatus = m.getArgAsInt32(0);
+				if (fboStatus == 1)		{	fbo14 = TRUE;	}	
+				if	( fboStatus == 0 )	{	fbo14 = FALSE;	}
+			}						
+			if ( m.getAddress() == "/fbo15" )	{	int fboStatus = m.getArgAsInt32(0);
+				if (fboStatus == 1)		{	fbo15 = TRUE;	}	
+				if	( fboStatus == 0 )	{	fbo15 = FALSE;	}
+			}						
+			if ( m.getAddress() == "/fbo16" )	{	int fboStatus = m.getArgAsInt32(0);
+				if (fboStatus == 1)		{	fbo16 = TRUE;	}	
+				if	( fboStatus == 0 )	{	fbo16 = FALSE;	}
+			}						
+			if ( m.getAddress() == "/fbo17" )	{	int fboStatus = m.getArgAsInt32(0);
+				if (fboStatus == 1)		{	fbo17 = TRUE;	}	
+				if	( fboStatus == 0 )	{	fbo17 = FALSE;	}
+			}						
+			if ( m.getAddress() == "/fbo18" )	{	int fboStatus = m.getArgAsInt32(0);
+				if (fboStatus == 1)		{	fbo18 = TRUE;	}	
+				if	( fboStatus == 0 )	{	fbo18 = FALSE;	}
+			}						
+			if ( m.getAddress() == "/fbo19" )	{	int fboStatus = m.getArgAsInt32(0);
+				if (fboStatus == 1)		{	fbo19 = TRUE;	}	
+				if	( fboStatus == 0 )	{	fbo19 = FALSE;	}
+			}						
+			if ( m.getAddress() == "/fbo20" )	{	int fboStatus = m.getArgAsInt32(0);
+				if (fboStatus == 1)		{	fbo20 = TRUE;	}	
+				if	( fboStatus == 0 )	{	fbo20 = FALSE;	}
+			}						
+			if ( m.getAddress() == "/fbo21" )	{	int fboStatus = m.getArgAsInt32(0);
+				if (fboStatus == 1)		{	fbo21 = TRUE;	}	
+				if	( fboStatus == 0 )	{	fbo21 = FALSE;	}
+			}						
+			if ( m.getAddress() == "/fbo22" )	{	int fboStatus = m.getArgAsInt32(0);
+				if (fboStatus == 1)		{	fbo22 = TRUE;	}	
+				if	( fboStatus == 0 )	{	fbo22 = FALSE;	}
+			}						
+			if ( m.getAddress() == "/fbo23" )	{	int fboStatus = m.getArgAsInt32(0);
+				if (fboStatus == 1)		{	fbo23 = TRUE;	}	
+				if	( fboStatus == 0 )	{	fbo23 = FALSE;	}
+			}						
+			if ( m.getAddress() == "/fbo24" )	{	int fboStatus = m.getArgAsInt32(0);
+				if (fboStatus == 1)		{	fbo24 = TRUE;	}	
+				if	( fboStatus == 0 )	{	fbo24 = FALSE;	}
+			}						
+			if ( m.getAddress() == "/fbo25" )	{	int fboStatus = m.getArgAsInt32(0);
+				if (fboStatus == 1)		{	fbo25 = TRUE;	}	
+				if	( fboStatus == 0 )	{	fbo25 = FALSE;	}
+			}						
+			if ( m.getAddress() == "/fbo26" )	{	int fboStatus = m.getArgAsInt32(0);
+				if (fboStatus == 1)		{	fbo26 = TRUE;	}	
+				if	( fboStatus == 0 )	{	fbo26 = FALSE;	}
+			}						
+			if ( m.getAddress() == "/fbo27" )	{	int fboStatus = m.getArgAsInt32(0);
+				if (fboStatus == 1)		{	fbo27 = TRUE;	}	
+				if	( fboStatus == 0 )	{	fbo27 = FALSE;	}
+			}						
+			if ( m.getAddress() == "/fbo28" )	{	int fboStatus = m.getArgAsInt32(0);
+				if (fboStatus == 1)		{	fbo28 = TRUE;	}	
+				if	( fboStatus == 0 )	{	fbo28 = FALSE;	}
+			}						
+			if ( m.getAddress() == "/fbo29" )	{	int fboStatus = m.getArgAsInt32(0);
+				if (fboStatus == 1)		{	fbo29 = TRUE;	}	
+				if	( fboStatus == 0 )	{	fbo29 = FALSE;	}
 			}
-			if ( m.getAddress() == "/fbo1" )	{	fbo1 = !fbo1;	}			
-			if ( m.getAddress() == "/fbo2" )	{	fbo2 = !fbo2;	}
-			if ( m.getAddress() == "/fbo3" )	{	fbo3 = !fbo3;	}			
-			if ( m.getAddress() == "/fbo4" )	{	fbo4 = !fbo4;	}
-			if ( m.getAddress() == "/fbo5" )	{	fbo5 = !fbo5;	}			
-			if ( m.getAddress() == "/fbo6" )	{	fbo6 = !fbo6;	}
-			if ( m.getAddress() == "/fbo7" )	{	fbo7 = !fbo7;	}			
-			if ( m.getAddress() == "/fbo8" )	{	fbo8 = !fbo8;	}
-			if ( m.getAddress() == "/fbo9" )	{	fbo9 = !fbo9;	}			
-			if ( m.getAddress() == "/fbo10" )	{	fbo10 = !fbo10;	}
-			if ( m.getAddress() == "/fbo11" )	{	fbo11 = !fbo11;	}			
-			if ( m.getAddress() == "/fbo12" )	{	fbo12 = !fbo12;	}
-			if ( m.getAddress() == "/fbo13" )	{	fbo13 = !fbo13;	}			
-			if ( m.getAddress() == "/fbo14" )	{	fbo14 = !fbo14;	}
-			if ( m.getAddress() == "/fbo15" )	{	fbo15 = !fbo15;	}			
-			if ( m.getAddress() == "/fbo16" )	{	fbo16 = !fbo16;	}
-			if ( m.getAddress() == "/fbo17" )	{	fbo17 = !fbo17;	}			
-			if ( m.getAddress() == "/fbo18" )	{	fbo18 = !fbo18;	}
-			if ( m.getAddress() == "/fbo19" )	{	fbo19 = !fbo19;	}			
-			if ( m.getAddress() == "/fbo20" )	{	fbo20 = !fbo20;	}
-			if ( m.getAddress() == "/fbo21" )	{	fbo21 = !fbo21;	}			
-			if ( m.getAddress() == "/fbo22" )	{	fbo22 = !fbo22;	}
-			if ( m.getAddress() == "/fbo23" )	{	fbo23 = !fbo23;	}			
-			if ( m.getAddress() == "/fbo24" )	{	fbo24 = !fbo24;	}
-			if ( m.getAddress() == "/fbo25" )	{	fbo25 = !fbo25;	}			
-			if ( m.getAddress() == "/fbo26" )	{	fbo26 = !fbo26;	}
-			if ( m.getAddress() == "/fbo27" )	{	fbo27 = !fbo27;	}			
-			if ( m.getAddress() == "/fbo28" )	{	fbo28 = !fbo28;	}
-			if ( m.getAddress() == "/fbo29" )	{	fbo29 = !fbo29;	}
+		}	//  FBO TRUE FALSE
+		{
 			
+			if ( m.getAddress() == "/afbo6" )	{
+				float afbo6temp = m.getArgAsFloat(0);
+				afbo6 = int(afbo6temp);
+			}			
 			if ( m.getAddress() == "/afbo7" )	{
 				float afbo7temp = m.getArgAsFloat(0);
 				afbo7 = int(afbo7temp);
-				
-				//afbo7 = m.getArgAsInt32(0);	
-				//cout << afbo7 << endl;
 			}			
+			if ( m.getAddress() == "/afbo8" )	{
+				float afbo8temp = m.getArgAsFloat(0);
+				afbo8 = int(afbo8temp);
+			}			
+
 						
-		}	//	FBO
+		}	//	FBO alpha
 		{
 			if ( m.getAddress() == "/drawLine" )	{
 				Effect.drawLine();
@@ -347,6 +447,21 @@ void granCieloApp::update(){
 				testFontSmall.drawString(deseo,0, 0);		
 				ofPopMatrix();
 			}		
+			if ( m.getAddress() == "/deseoConString" )	{
+				deseo = m.getArgAsString( 0 );
+				a8 = r8 = g8 = b8 = 0;
+				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // GL_SRC_ALPHA_SATURATE,GL_ONE     GL_SRC_ALPHA, GL_ONE
+				ofFill();
+				strPosX = ofRandom(0, ofGetWidth());
+				strPosY = ofRandom(0, ofGetHeight());
+				ofSetColor(255,255,255,255);	// even
+				ofPushMatrix();
+				ofTranslate(strPosX, strPosY, 0);
+				testFontSmall.loadFont("Batang.ttf", int(ofRandom(2,40)), true, true, true);
+				testFontSmall.drawString(deseo,0, 0);		
+				ofPopMatrix();
+			}		
+
 		}	//	effects
 		{
 			if ( m.getAddress() == "/lsystem" )	{
@@ -871,7 +986,7 @@ void granCieloApp::draw(){
 					rm1.startOffscreenDraw();
 						ofFill();
 						ofSetColor(0xFFFFFF);
-						tejados.draw(0,0);						
+						tejadosInvierno.draw(0,0);						
 					rm1.endOffscreenDraw();
 				}
 				rm1.drawOutputDiagnostically(quad1.x, quad1.y, quad1.width, quad1.height);	
@@ -879,7 +994,7 @@ void granCieloApp::draw(){
 		}	//	FBO 1 desagua
 		{
 			if ( fbo2 )	{
-				if ( doRender ) {		
+				if ( doRender ) {																
 					rm2.startOffscreenDraw();
 						if ( ofGetFrameNum() % 10 == 0)	{
 							alphaFBO2 ++;
@@ -888,7 +1003,9 @@ void granCieloApp::draw(){
 						ofSetColor(255,255,255,alphaFBO2);												
 						ventanaRoja.draw(0,0);						
 					rm2.endOffscreenDraw();
-				} 
+				}	{
+				
+				}
 				rm2.drawOutputDiagnostically(quad2.x, quad2.y, quad2.width, quad2.height);	
 			}			
 		}	//	FBO 2 ventana rota
@@ -920,21 +1037,21 @@ void granCieloApp::draw(){
 			if ( fbo5 )	{
 				if ( doRender ) {		
 					rm5.startOffscreenDraw();
-						ormigas.idleMovie();
+						floresVideo.idleMovie();
 						ofSetColor(0xFFFFFF);
-						ormigas.draw(0,0, 320,280);
+						floresVideo.draw(0,0, 430, 660);
 					rm5.endOffscreenDraw();
 				}
 				rm5.drawOutputDiagnostically(quad5.x, quad5.y, quad5.width, quad5.height);	
 			}
-		}	//	FBO 5 ormigas
+		}	//	FBO 5 flores
 		{
 			if ( fbo6 )	{
 				if ( doRender ) {		
 					rm6.startOffscreenDraw();
-						if ( ofGetFrameNum() % 60 == 0)	{
-							afbo6 ++;
-						}
+//						if ( ofGetFrameNum() % 60 == 0)	{
+//							afbo6 ++;
+//						}
 						ofFill();
 						ofSetColor(255,255,255,afbo6);												
 						ventanaRoja.draw(0,0);						
@@ -947,12 +1064,9 @@ void granCieloApp::draw(){
 			if ( fbo7 )	{
 				if ( doRender ) {		
 					rm7.startOffscreenDraw();
-						if ( ofGetFrameNum() % 60 == 0)	{
-							afbo7 ++;
-						}
 						ofFill();
 						ofSetColor(255,255,255,afbo7);												
-						ventanaRoja.draw(0,0);						
+						montanas.draw(0,0);						
 						
 					rm7.endOffscreenDraw();
 				}
@@ -963,9 +1077,9 @@ void granCieloApp::draw(){
 			if ( fbo8 )	{
 				if ( doRender ) {		
 					rm8.startOffscreenDraw();
-						if ( ofGetFrameNum() % 60 == 0)	{
-							afbo8 ++;
-						}
+//						if ( ofGetFrameNum() % 60 == 0)	{
+//							afbo8 ++;
+//						}
 						ofFill();
 						ofSetColor(255,255,255,afbo8);												
 						ventanaRoja.draw(0,0);						

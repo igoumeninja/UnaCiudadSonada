@@ -86,8 +86,8 @@ class granCieloApp : public ofBaseApp{
 		ofRectangle quad10, quad11, quad12, quad13, quad14, quad15, quad16, quad17, quad18, quad19;				
 		ofRectangle quad20, quad21, quad22, quad23, quad24, quad25, quad26, quad27, quad28, quad29;				
 
-		ofImage				charco, tejados, ventanaRoja, reloj, textura;
-		ofVideoPlayer 		ciudaddestruidaconlluvia, illusion, ormigas;
+		ofImage				charco, tejados, ventanaRoja, reloj, textura, tejadosInvierno, montanas;
+		ofVideoPlayer 		ciudaddestruidaconlluvia, illusion, ormigas, floresVideo;
 
         bool toggleImage, doRender;
 		bool frameByframe;
