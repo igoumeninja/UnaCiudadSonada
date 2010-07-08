@@ -29,7 +29,7 @@ void granCieloApp::setup(){
 		r4 = g4 = b4 = 0;
 		r5 = g5 = b5 = 0;
 		r6 = g6 = b6 = 0;
-		r7 = g7 = b8 = 0;
+		r7 = g7 = b8 = 255;
 		r8 = g8 = b8 = 0;				
 		viewSoundChanels = 0;
 		midi85 = midi93 = 127;
@@ -95,13 +95,9 @@ void granCieloApp::setup(){
 		
 		strPosX = strPosY = 200;
 		}
-		
-	//	Effects
-	Effect.setup();
-	//	LSystem
-	LSystem.setup();	
-	
-	
+	Effect.setup();	//	Effects
+	LSystem.setup();	//	LSystem
+	{
 	//##############################################
 	//
 	//                  Deseo
@@ -112,8 +108,7 @@ void granCieloApp::setup(){
 	//
 	//
 	//##############################################
-
-	//	FBO	
+	}
 	{
 		doRender = true;
 
@@ -225,7 +220,10 @@ void granCieloApp::setup(){
 		flores.loadImage("images/flores.png");	
 		raton.loadImage("images/raton.png");	
 		ladrillo.loadImage("images/ladrillo.png");
-		mariposa.loadImage("images/mariposa.png");		
+		mariposa.loadImage("images/mariposa.png");	
+	    chimanea.loadImage("images/chimanea.png");	
+		arbols.loadImage("images/arbol.png");
+		burbujas.loadImage("images/burbujas.png");		
 			
 
 		//Video
@@ -235,8 +233,8 @@ void granCieloApp::setup(){
 		ormigas.loadMovie("videos/ormigas.mov");	
 		floresVideo.loadMovie("videos/FloresYHojasQueCrecen430x660.avi");
 		chanTiChan.loadMovie("videos/chantichan.avi");	
-	}
-	
+	}	//	FBO	
+	{	
 	ofBackground(r8,g8,b8);
 	
 	testFont.loadFont("Batang.ttf", 96, true, true, true);
@@ -272,6 +270,7 @@ void granCieloApp::setup(){
 	ofEnableSmoothing();
 	ofEnableAlphaBlending(); 
 	//glutSetCursor(GLUT_CURSOR_CYCLE);  // change cursor icon (http://pyopengl.sourceforge.net/documentation/manual/glutSetCursor.3GLUT.html)
+	}	// Other
 	
 }
 void granCieloApp::update(){
@@ -449,6 +448,20 @@ void granCieloApp::update(){
 						
 		}	//	FBO alpha
 		{
+			if ( m.getAddress() == "/viewVentanaRotaTRUE" )	{
+				viewVentanaRota = true;
+			}			
+			if ( m.getAddress() == "/viewVentanaRotaFALSE" )	{
+				viewVentanaRota = false;
+			}			
+			if ( m.getAddress() == "/viewChimaneaTRUE" )	{
+				viewChimanea = true;
+				//cout << "viewChanTiChanTRUE" << endl;
+			}			
+			if ( m.getAddress() == "/viewChimaneaFALSE" )	{
+				viewChimanea = false;
+				//cout << "viewChanTiChanTRUE" << endl;
+			}			
 			if ( m.getAddress() == "/viewChanTiChanTRUE" )	{
 				viewChanTiChan = true;
 				//cout << "viewChanTiChanTRUE" << endl;
@@ -594,6 +607,42 @@ void granCieloApp::update(){
 				mariposa.draw(0, 0);						
 				ofPopMatrix();
 			}		
+			if ( m.getAddress() == "/arbol" )	{
+				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // GL_SRC_ALPHA_SATURATE,GL_ONE     GL_SRC_ALPHA, GL_ONE
+				ofFill();
+				ofSetColor(0xFFFFFF);
+				strPosX = ofRandom(0, ofGetWidth());
+				strPosY = ofRandom(0, ofGetHeight());
+				//cout << "aqui" << endl;
+				ofPushMatrix();
+				ofTranslate(strPosX, strPosY, 0);
+				arbols.draw(0, 0);						
+				ofPopMatrix();
+			}		
+			if ( m.getAddress() == "/burbujas" )	{
+				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // GL_SRC_ALPHA_SATURATE,GL_ONE     GL_SRC_ALPHA, GL_ONE
+				ofFill();
+				ofSetColor(0xFFFFFF);
+				strPosX = ofRandom(0, ofGetWidth());
+				strPosY = ofRandom(0, ofGetHeight());
+				//cout << "aqui" << endl;
+				ofPushMatrix();
+				ofTranslate(strPosX, strPosY, 0);
+				burbujas.draw(0, 0);						
+				ofPopMatrix();
+			}		
+			if ( m.getAddress() == "/golondrinas" )	{			
+				LSystem.lsystemString = m.getArgAsString( 0 );
+				LSystem.depthLength = m.getArgAsInt32( 1 );
+				LSystem.theta = m.getArgAsFloat( 2 );
+				LSystem.scale = m.getArgAsFloat( 3 );				
+				LSystem.noise = m.getArgAsFloat( 4 );	
+				lsystemGeneration = m.getArgAsInt32( 5 );
+				if	(lsystemGeneration == 0)	{
+					LSystem.startGeneration = true;
+				}				
+				LSystem.golondrinas();					
+			}
 
 		}	//	effects
 		{
@@ -1084,10 +1133,29 @@ void granCieloApp::update(){
 				ofBackground(rBack, gBack, bBack);
 			}		
 		}	//	background
+		{
+			if ( m.getAddress() == "/soloChanTiChanTRUE" )		{
+				xSolo = m.getArgAsFloat(0);
+				ySolo = m.getArgAsFloat(1);
+				viewSoloChanTiChan = true;
+//				for( int i=1000; i<1000 + numMouseSketches; i++ ) {
+//					sketch[i].drawMouse(xSolo, ySolo, 0, r7, g7, b7, a7/3, mouseLines);	
+//				}			
+			}		
+			if ( m.getAddress() == "/soloChanTiChanFALSE" )		{
+				viewSoloChanTiChan = false;
+			}		
+		}	//	sKeTch
 
 	}	
 }
 void granCieloApp::draw(){
+	if	(	viewSoloChanTiChan	)	{
+		for( int i=0; i<numMouseSketches; i++ ) {
+			sketch[i].drawMouse(xSolo, ySolo, 0, r7, g7, b7, a7/3, mouseLines);	
+		}
+		
+	}
 	{	
 	//framerate
 	//	ofSetColor(0,0,0); //set font color
@@ -1435,12 +1503,17 @@ void granCieloApp::draw(){
 							ofFill();
 							ofSetColor(0xFFFFFF);
 							flores.draw(0,0);						
-						}	else	{										
+						}	
+						if	(	viewVentanaRota	)	{										
 							ofFill();
 							ofSetColor(255,255,255,afbo21_23);												
 							ventanaRota.draw(0,0);
 						}
-						
+						if	(	viewChimanea	)	{										
+							ofFill();
+							ofSetColor(255,255,255,afbo123);												
+							chimanea.draw(0,0);						
+						}						
 					rm21.endOffscreenDraw();
 				}
 				rm21.drawOutputDiagnostically(quad21.x, quad21.y, quad21.width, quad21.height);	

@@ -87,7 +87,8 @@ class granCieloApp : public ofBaseApp{
 		ofRectangle quad20, quad21, quad22, quad23, quad24, quad25, quad26, quad27, quad28, quad29;				
 
 		ofImage				charco, tejados, ventanaRoja, reloj, textura, tejadosInvierno, montanas, bosque, muroCasaAlta, tejadoCasaAlta;
-		ofImage				muroCasaDerecha, tejadosCasaDerecha, ventanaRota, flores, raton, ladrillo, mariposa;
+		ofImage				muroCasaDerecha, tejadosCasaDerecha, ventanaRota, flores, raton, ladrillo, mariposa, arbols, chimanea, burbujas;
+
 		ofVideoPlayer 		ciudadDestruida, ciudaddestruidaconlluvia, illusion, ormigas, floresVideo, chanTiChan;
 
         bool toggleImage, doRender;
@@ -97,9 +98,12 @@ class granCieloApp : public ofBaseApp{
 		bool fbo20, fbo21, fbo22, fbo23, fbo24, fbo25, fbo26, fbo27, fbo28, fbo29;	
 		bool viewFlores2, viewFlores6, viewFlores21, viewFlores13, viewFlores14, viewFlores10;
 		bool viewRaton4, viewRaton20, viewRaton22, viewLadrillo4, viewLadrillo20, viewLadrillo22;
-		bool viewCiudadDestruidaConLluvia,viewCiudadDestruida, viewChanTiChan;	
+		bool viewCiudadDestruidaConLluvia,viewCiudadDestruida, viewChanTiChan, viewSoloChanTiChan;
+		bool viewChimanea, viewVentanaRota;
 		
 		int alphaFBO2, afbo6, afbo7, afbo8, afbo123, afbo15_17, afbo21_23;
+		
+		float xSolo, ySolo;
 		
 		
 		//############  Deseo   ###################

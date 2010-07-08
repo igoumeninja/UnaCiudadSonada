@@ -33,11 +33,13 @@ class ofxLSystem {
 	public: 
 
 		ofxLSystem(); 
+		ofImage				golondrina;
 
 		void	setup();
 		void	color();		
 		void	update();
 		void	recieveString();		
+		void	golondrinas();		
 
 		float	depthLength, depthLengthDefault, depthLengthScale, scale, theta, noise;
 		string	lsystemString;	
