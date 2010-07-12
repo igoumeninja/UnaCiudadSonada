@@ -103,7 +103,7 @@ void granCieloApp::setup(){
 	//                  Deseo
 	//
 	//
-	deseo = "Quierro hacer la oscuridad luz";
+	deseo = "just  pull";
 	//
 	//
 	//
