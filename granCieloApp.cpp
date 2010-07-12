@@ -667,13 +667,6 @@ void granCieloApp::update(){
 			}
 		}	//	LSystems
 		{
-			if ( m.getAddress() == "/scopeView" )	{
-				ofFill();
-				ofSetColor(0xFFFFFF);
-				//fibonacciDisplay.draw(0,0);			
-			}
-		}	//	draw Images
-		{
 			if ( m.getAddress() == "/sync" )	{
 				str = m.getArgAsString( 0 );
 				if	(str == "beats")	{
@@ -1123,6 +1116,22 @@ void granCieloApp::update(){
 				float b8temp = int(m.getArgAsFloat(0));
 				b8 = int(b8temp);
 			}		
+			if ( m.getAddress() == "/a7" )		{
+				float a7temp = int(m.getArgAsFloat(0));
+				a7 = int(a7temp);
+			}		
+			if ( m.getAddress() == "/r7" )		{
+				float r7temp = int(m.getArgAsFloat(0));
+				r7 = int(r7temp);
+			}		
+			if ( m.getAddress() == "/g7" )		{
+				float g7temp = int(m.getArgAsFloat(0));
+				g7 = int(g7temp);
+			}		
+			if ( m.getAddress() == "/b7" )		{
+				float b7temp = int(m.getArgAsFloat(0));
+				b7 = int(b7temp);
+			}		
 		}	//	rgb directamente
 		{
 			if ( m.getAddress() == "/background" )		{
@@ -1146,7 +1155,6 @@ void granCieloApp::update(){
 				viewSoloChanTiChan = false;
 			}		
 		}	//	sKeTch
-
 	}	
 }
 void granCieloApp::draw(){
