@@ -102,6 +102,7 @@ class granCieloApp : public ofBaseApp{
 		bool viewRaton4, viewRaton20, viewRaton22, viewLadrillo4, viewLadrillo20, viewLadrillo22;
 		bool viewCiudadDestruidaConLluvia,viewCiudadDestruida, viewChanTiChan, viewSoloChanTiChan;
 		bool viewChimanea, viewVentanaRota, viewMontanas, viewMontanasBlancas, viewMontanasRojas;
+		bool viewSketchCasas, viewMuroCasaDerecha, viewtejadosCasaDerecha;
 		
 		int alphaFBO2, afbo6, afbo7, afbo8, afbo123, afbo15_17, afbo21_23;
 		

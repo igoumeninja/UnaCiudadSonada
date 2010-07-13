@@ -111,8 +111,6 @@ void granCieloApp::setup(){
 	//##############################################
 	}
 	{
-		doRender = true;
-
 		rm0.allocateForNScreens(1, 320, 280); //the first dedicate the screens
 		rm0.loadFromXml("xml/fboSettings0.xml");
 		quad0  = ofRectangle(1000,400,200,200);
@@ -178,13 +176,13 @@ void granCieloApp::setup(){
 		rm20.allocateForNScreens(2, 500, 500); //the first dedicate the screens
 		rm20.loadFromXml("xml/fboSettings20.xml");
 		quad20  = ofRectangle(1000,400,200,200);
-		rm21.allocateForNScreens(1, 500, 500); //the first dedicate the screens
+		rm21.allocateForNScreens(2, 500, 500); //the first dedicate the screens
 		rm21.loadFromXml("xml/fboSettings21.xml");
 		quad21  = ofRectangle(1000,400,200,200);
 		rm22.allocateForNScreens(1, 500, 500); //the first dedicate the screens
 		rm22.loadFromXml("xml/fboSettings22.xml");
 		quad22  = ofRectangle(1000,400,200,200);
-		rm23.allocateForNScreens(1, 500, 500); //the first dedicate the screens
+		rm23.allocateForNScreens(2, 500, 500); //the first dedicate the screens
 		rm23.loadFromXml("xml/fboSettings23.xml");
 		quad23  = ofRectangle(1000,400,200,200);
 		rm24.allocateForNScreens(2, 500, 500); //the first dedicate the screens
@@ -288,9 +286,15 @@ void granCieloApp::update(){
 		receiver.getNextMessage( &m ); 
 		{
 
-			if ( m.getAddress() == "/defaultFBO" )	{	int fboStatus = m.getArgAsInt32(0);
-				if (fboStatus == 1)		{	defaultFBO = TRUE;	cout << "true"	<< endl;}	
-				if	( fboStatus == 0 )	{	defaultFBO = FALSE;	cout << "false"	<< endl;}
+			if ( m.getAddress() == "/defaultFBOTRUE" )	{	
+				defaultFBO = true;
+			}								
+			if ( m.getAddress() == "/allFboTrue" )	{	
+				fbo0=fbo1=fbo2=fbo3=fbo4=fbo5=fbo6=fbo7=fbo8=fbo9=fbo10=fbo11=fbo12=fbo13=fbo14=fbo15=fbo16=fbo17=fbo18=fbo19=fbo20=fbo21=fbo22=fbo23=fbo24=fbo25=fbo26=fbo27=fbo28=fbo29 = true;
+			}								
+			
+			if ( m.getAddress() == "/defaultFBOFALSE" )	{	
+				defaultFBO = false;
 			}									
 			if ( m.getAddress() == "/fbo" )		{	
 				fbo0=fbo1=fbo2=fbo3=fbo4=fbo5=fbo6=fbo7=fbo8=fbo9=fbo10=fbo11=fbo12=fbo13=fbo14=fbo15=fbo16=fbo17=fbo18=fbo19=fbo20=fbo21=fbo22=fbo23=fbo24=fbo25=fbo26=fbo27=fbo28=fbo29= FALSE;	
@@ -456,6 +460,25 @@ void granCieloApp::update(){
 						
 		}	//	FBO alpha
 		{
+			
+			if ( m.getAddress() == "/viewtejadosCasaDerechaTRUE" )	{
+				viewtejadosCasaDerecha = true;
+			}			
+			if ( m.getAddress() == "/viewtejadosCasaDerechaFALSE" )	{
+				viewtejadosCasaDerecha = false;
+			}			
+			if ( m.getAddress() == "/viewMuroCasaDerechaTRUE" )	{
+				viewMuroCasaDerecha = true;
+			}			
+			if ( m.getAddress() == "/viewMuroCasaDerechaFALSE" )	{
+				viewMuroCasaDerecha = false;
+			}			
+			if ( m.getAddress() == "/viewSketchCasasTRUE" )	{
+				viewSketchCasas = true;
+			}			
+			if ( m.getAddress() == "/viewSketchCasasFALSE" )	{
+				viewSketchCasas = false;
+			}			
 			if ( m.getAddress() == "/viewMontanasRojasTRUE" )	{
 				viewMontanasRojas = true;
 			}			
@@ -1409,19 +1432,24 @@ void granCieloApp::draw(){
 		{
 			if ( fbo9 )	{
 				rm9.startOffscreenDraw();
-					if	(	defaultFBO	)	{							
-						ofSetColor(255,255,255);
-						ofRect(0, 0, rm9.width, rm9.height);							
-						ofSetColor(0xFF0000);
-						ofLine(0, 0, rm9.width, rm9.height);							
-						ofSetColor(0xFF0000);
-						ofLine(rm9.width, 0, 0, rm9.height);							
-					}																	
+				if	(	defaultFBO	)	{							
+					ofSetColor(255,255,255);
+					ofRect(0, 0, rm9.width, rm9.height);							
+					ofSetColor(0xFF0000);
+					ofLine(0, 0, rm9.width, rm9.height);							
+					ofSetColor(0xFF0000);
+					ofLine(rm9.width, 0, 0, rm9.height);							
+				}		
+				if	(	viewSketchCasas	)	{
+					for( int i=100; i<200; i++ ) {
+						sketch[i].drawMouse(ofRandom(0,500), ofRandom(0,500), 0, 255, 255, 255, 25, mouseLines);	
+					}
+					
+				}
 				rm9.endOffscreenDraw();
 				rm9.drawOutputDiagnostically(quad9.x, quad9.y, quad9.width, quad9.height);	
 			}
 		}	//	FBO 9
-
 		{
 			if ( fbo10 )	{
 				rm10.startOffscreenDraw();
@@ -1592,8 +1620,6 @@ void granCieloApp::draw(){
 				rm19.drawOutputDiagnostically(quad19.x, quad19.y, quad19.width, quad19.height);	
 			}
 		}	//	FBO 19
-
-
 		{
 			if ( fbo20 )	{
 				rm20.startOffscreenDraw();
@@ -1686,11 +1712,11 @@ void granCieloApp::draw(){
 						ofSetColor(0xFF0000);
 						ofLine(rm23.width, 0, 0, rm23.height);							
 					}					
-//					if (viewFBO23) {
-//						ofFill();
-//						ofSetColor(255,255,255,afbo21_23);												
-//						tejadosCasaDerecha.draw(0,0);						
-//					}					
+					if (	viewtejadosCasaDerecha	) {
+						ofFill();
+						ofSetColor(255,255,255,afbo21_23);												
+						tejadosCasaDerecha.draw(0,0);						
+					}					
 				rm23.endOffscreenDraw();
 				rm23.drawOutputDiagnostically(quad23.x, quad23.y, quad23.width, quad23.height);	
 			}
