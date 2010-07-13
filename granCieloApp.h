@@ -88,10 +88,12 @@ class granCieloApp : public ofBaseApp{
 
 		ofImage				charco, tejados, ventanaRoja, reloj, textura, tejadosInvierno, montanas, bosque, muroCasaAlta, tejadoCasaAlta;
 		ofImage				muroCasaDerecha, tejadosCasaDerecha, ventanaRota, flores, raton, ladrillo, mariposa, arbols, chimanea, burbujas;
+		ofImage				montanasBlancas, montanasRojas;
 
 		ofVideoPlayer 		ciudadDestruida, ciudaddestruidaconlluvia, illusion, ormigas, floresVideo, chanTiChan;
 
-        bool toggleImage, doRender;
+		bool defaultFBO;
+		bool toggleImage, doRender;
 		bool frameByframe;
 		bool fbo0, fbo1, fbo2, fbo3, fbo4, fbo5, fbo6, fbo7, fbo8, fbo9;
 		bool fbo10, fbo11, fbo12, fbo13, fbo14, fbo15, fbo16, fbo17, fbo18, fbo19;		
@@ -99,7 +101,7 @@ class granCieloApp : public ofBaseApp{
 		bool viewFlores2, viewFlores6, viewFlores21, viewFlores13, viewFlores14, viewFlores10;
 		bool viewRaton4, viewRaton20, viewRaton22, viewLadrillo4, viewLadrillo20, viewLadrillo22;
 		bool viewCiudadDestruidaConLluvia,viewCiudadDestruida, viewChanTiChan, viewSoloChanTiChan;
-		bool viewChimanea, viewVentanaRota;
+		bool viewChimanea, viewVentanaRota, viewMontanas, viewMontanasBlancas, viewMontanasRojas;
 		
 		int alphaFBO2, afbo6, afbo7, afbo8, afbo123, afbo15_17, afbo21_23;
 		
