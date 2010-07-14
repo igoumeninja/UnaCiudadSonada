@@ -225,6 +225,7 @@ void granCieloApp::setup(){
 		burbujas.loadImage("images/burbujas.png");
 		montanasBlancas.loadImage("images/montanasBlancas.jpg");
 		montanasRojas.loadImage("images/montanasRojas.jpg");
+		casaRedondeada.loadImage("images/casaRedondeada.jpg");
 			
 
 		//Video
@@ -274,7 +275,7 @@ void granCieloApp::setup(){
 	}	// Other
 	
 }
-void granCieloApp::update(){
+void granCieloApp::update(){ 
 	//OSC
 	for ( int i=0; i<NUM_MSG_STRINGS; i++ )	{
 		if ( timers[i] < ofGetElapsedTimef() )
@@ -460,7 +461,24 @@ void granCieloApp::update(){
 						
 		}	//	FBO alpha
 		{
-			
+			if ( m.getAddress() == "/viewCasaGrandeTRUE" )	{
+				viewCasaGrande = true;
+			}			
+			if ( m.getAddress() == "/viewCasaGrandeFALSE" )	{
+				viewCasaGrande = false;
+			}			
+			if ( m.getAddress() == "/viewMuroCasaIzquierdaTRUE" )	{
+				viewMuroCasaIzquierda = true;
+			}			
+			if ( m.getAddress() == "/viewMuroCasaIzquierdaFALSE" )	{
+				viewMuroCasaIzquierda = false;
+			}			
+			if ( m.getAddress() == "/viewTejadoCasaIzquierdaTRUE" )	{
+				viewTejadoCasaIzquierda = true;
+			}			
+			if ( m.getAddress() == "/viewTejadoCasaIzquierdaFALSE" )	{
+				viewTejadoCasaIzquierda = false;
+			}			
 			if ( m.getAddress() == "/viewtejadosCasaDerechaTRUE" )	{
 				viewtejadosCasaDerecha = true;
 			}			
@@ -505,24 +523,30 @@ void granCieloApp::update(){
 			}			
 			if ( m.getAddress() == "/viewChimaneaTRUE" )	{
 				viewChimanea = true;
-				//cout << "viewChanTiChanTRUE" << endl;
 			}			
 			if ( m.getAddress() == "/viewChimaneaFALSE" )	{
 				viewChimanea = false;
-				//cout << "viewChanTiChanTRUE" << endl;
 			}			
 			if ( m.getAddress() == "/viewChanTiChanTRUE" )	{
 				viewChanTiChan = true;
-				//cout << "viewChanTiChanTRUE" << endl;
 			}			
 			if ( m.getAddress() == "/viewChanTiChanFALSE" )	{
 				viewChanTiChan = false;
-				//cout << "viewChanTiChanFALSE" << endl;
+			}						
+			if ( m.getAddress() == "/viewFlores23TRUE" )	{
+				viewFlores23 = true;
 			}			
-			
+			if ( m.getAddress() == "/viewFlores23FALSE" )	{
+				viewFlores23 = false;
+			}			
+			if ( m.getAddress() == "/viewFlores21TRUE" )	{
+				viewFlores21 = true;
+			}			
+			if ( m.getAddress() == "/viewFlores21FALSE" )	{
+				viewFlores21 = false;
+			}			
 			if ( m.getAddress() == "/viewFlores6TRUE" )	{
 				viewFlores6 = true;
-				//cout << "TRUEflores6" << endl;
 			}			
 			if ( m.getAddress() == "/viewFlores6FALSE" )	{
 				viewFlores6 = false;
@@ -1208,8 +1232,8 @@ void granCieloApp::update(){
 }
 void granCieloApp::draw(){
 	if	(	viewSoloChanTiChan	)	{
-		for( int i=0; i<numMouseSketches; i++ ) {
-			sketch[i].drawMouse(xSolo, ySolo, 0, r7, g7, b7, a7/3, mouseLines);	
+		for( int i=0; i<100; i++ ) {
+			sketch[i].drawMouse(xSolo, ySolo, 0, r7, g7, b7, a7/3, 0);	
 		}
 		
 	}
@@ -1265,7 +1289,7 @@ void granCieloApp::draw(){
 					ofSetColor(0xFF0000);
 					ofLine(rm1.width, 0, 0, rm1.height);							
 				}					
-				if	(	viewMontanas	)	{												
+				if	(viewTejadoCasaIzquierda)	{												
 					ofFill();
 					ofSetColor(255,255,255,afbo123);												
 					tejadosInvierno.draw(0,0);						
@@ -1273,32 +1297,33 @@ void granCieloApp::draw(){
 				rm1.endOffscreenDraw();
 				rm1.drawOutputDiagnostically(quad1.x, quad1.y, quad1.width, quad1.height);	
 			}
-		}	//	FBO 1 desagua
+		}	//	FBO 1 
 		{
 			if ( fbo2 )	{
 				rm2.startOffscreenDraw();
-					if	( viewFlores6 )	{
-						ofFill();
-						ofSetColor(0xFFFFFF);
-						flores.draw(0,0);						
-					}	
-	//					if	( )	{					
-	//						ofFill();
-	//						ofSetColor(255,255,255,afbo123);												
-	//						ventanaRoja.draw(0,0);						
-	//						}
-					if	(	defaultFBO	)	{							
-						ofSetColor(255,255,255);
-						ofRect(0, 0, rm2.width, rm2.height);							
-						ofSetColor(0xFF0000);
-						ofLine(0, 0, rm2.width, rm2.height);							
-						ofSetColor(0xFF0000);
-						ofLine(rm2.width, 0, 0, rm2.height);							
-					}									
+				if	(	defaultFBO	)	{							
+					ofSetColor(255,255,255);
+					ofRect(0, 0, rm2.width, rm2.height);							
+					ofSetColor(0xFF0000);
+					ofLine(0, 0, rm2.width, rm2.height);							
+					ofSetColor(0xFF0000);
+					ofLine(rm2.width, 0, 0, rm2.height);							
+				}	
+				if	(viewMuroCasaIzquierda )	{					
+					ofFill();
+					ofSetColor(255,255,255,afbo123);												
+					ventanaRoja.draw(0,0);						
+				}
+				if	( viewFlores6 )	{
+					ofFill();
+					ofSetColor(0xFFFFFF);
+					flores.draw(0,0);						
+				}	
+				
 				rm2.endOffscreenDraw();
 				rm2.drawOutputDiagnostically(quad2.x, quad2.y, quad2.width, quad2.height);	
 			}			
-		}	//	FBO 2 ventana rota
+		}	//	FBO 2 
 		{
 			if ( fbo3 )	{
 				rm3.startOffscreenDraw();
@@ -1367,28 +1392,29 @@ void granCieloApp::draw(){
 		{
 			if ( fbo6 )	{
 				rm6.startOffscreenDraw();
-					if	(	defaultFBO	)	{							
-						ofSetColor(255,255,255);
-						ofRect(0, 0, rm6.width, rm6.height);							
-						ofSetColor(0xFF0000);
-						ofLine(0, 0, rm6.width, rm6.height);							
-						ofSetColor(0xFF0000);
-						ofLine(rm6.width, 0, 0, rm6.height);							
-					}																					
-					if	( viewFlores6 )	{
-						ofFill();
-						ofSetColor(0xFFFFFF);
-						flores.draw(0,0);						
-					}	
-					if	(	viewMontanasRojas	)	{					
-						ofFill();
-						ofSetColor(255,255,255,afbo6);												
-						montanasRojas.draw(0,0);						
-					}
+				if	(	defaultFBO	)	{							
+					ofSetColor(255,255,255);
+					ofRect(0, 0, rm6.width, rm6.height);							
+					ofSetColor(0xFF0000);
+					ofLine(0, 0, rm6.width, rm6.height);							
+					ofSetColor(0xFF0000);
+					ofLine(rm6.width, 0, 0, rm6.height);							
+				}																					
+				if	(	viewMontanasRojas	)	{					
+					ofFill();
+					ofSetColor(255,255,255,afbo6);												
+					montanasRojas.draw(0,0);						
+				}
+				if	( viewFlores6 )	{
+					ofFill();
+					ofSetColor(0xFFFFFF);
+					flores.draw(0,0);						
+				}	
+				
 				rm6.endOffscreenDraw();
 				rm6.drawOutputDiagnostically(quad6.x, quad6.y, quad6.width, quad6.height);	
 			}
-		}	//	FBO 6 textura
+		}	//	FBO 6 
 		{
 			if ( fbo7 )	{
 				rm7.startOffscreenDraw();
@@ -1441,11 +1467,17 @@ void granCieloApp::draw(){
 					ofLine(rm9.width, 0, 0, rm9.height);							
 				}		
 				if	(	viewSketchCasas	)	{
+					ofSetColor(0,0,0,20);
+					ofRect(0, 0, rm9.width, rm9.height);
 					for( int i=100; i<200; i++ ) {
-						sketch[i].drawMouse(ofRandom(0,500), ofRandom(0,500), 0, 255, 255, 255, 25, mouseLines);	
+						sketch[i].drawMouse(ofRandom(0,500), ofRandom(0,500), 0, 155, 155, 155, 150, 1);	
 					}
-					
 				}
+				if	(viewCasaGrande)	{					
+					ofFill();
+					ofSetColor(0xFFFFFF);
+					casaRedondeada.draw(0,0);						
+				}				
 				rm9.endOffscreenDraw();
 				rm9.drawOutputDiagnostically(quad9.x, quad9.y, quad9.width, quad9.height);	
 			}
@@ -1453,14 +1485,24 @@ void granCieloApp::draw(){
 		{
 			if ( fbo10 )	{
 				rm10.startOffscreenDraw();
-					if	(	defaultFBO	)	{							
-						ofSetColor(255,255,255);
-						ofRect(0, 0, rm10.width, rm10.height);							
-						ofSetColor(0xFF0000);
-						ofLine(0, 0, rm10.width, rm10.height);							
-						ofSetColor(0xFF0000);
-						ofLine(rm10.width, 0, 0, rm10.height);							
-					}																	
+				if	(	defaultFBO	)	{							
+					ofSetColor(255,255,255);
+					ofRect(0, 0, rm10.width, rm10.height);							
+					ofSetColor(0xFF0000);
+					ofLine(0, 0, rm10.width, rm10.height);							
+					ofSetColor(0xFF0000);
+					ofLine(rm10.width, 0, 0, rm10.height);							
+				}	
+				if	(	viewSketchCasas	)	{
+					ofSetColor(0,0,0,20);
+					ofRect(0, 0, rm10.width, rm10.height);
+
+					for( int i=200; i<300; i++ ) {
+						sketch[i].drawMouse(ofRandom(0,500), ofRandom(0,500), 0, 205, 25, 155, 155, 1);	
+					}
+					
+				}
+				
 				rm10.endOffscreenDraw();
 				rm10.drawOutputDiagnostically(quad10.x, quad10.y, quad10.width, quad10.height);	
 			}
@@ -1468,14 +1510,24 @@ void granCieloApp::draw(){
 		{
 			if ( fbo11) {
 				rm11.startOffscreenDraw();
-					if	(	defaultFBO	)	{							
-						ofSetColor(255,255,255);
-						ofRect(0, 0, rm11.width, rm11.height);							
-						ofSetColor(0xFF0000);
-						ofLine(0, 0, rm11.width, rm11.height);							
-						ofSetColor(0xFF0000);
-						ofLine(rm11.width, 0, 0, rm11.height);							
-					}																	
+				if	(	defaultFBO	)	{							
+					ofSetColor(255,255,255);
+					ofRect(0, 0, rm11.width, rm11.height);							
+					ofSetColor(0xFF0000);
+					ofLine(0, 0, rm11.width, rm11.height);							
+					ofSetColor(0xFF0000);
+					ofLine(rm11.width, 0, 0, rm11.height);							
+				}	
+				if	(	viewSketchCasas	)	{
+					ofSetColor(0,0,0,20);
+					ofRect(0, 0, rm11.width, rm11.height);
+					
+					for( int i=300; i<400; i++ ) {
+						sketch[i].drawMouse(ofRandom(0,500), ofRandom(0,500), 0, 55, 55, 255, 155, 1);	
+					}
+					
+				}
+				
 				rm11.endOffscreenDraw();
 				rm11.drawOutputDiagnostically(quad11.x, quad11.y, quad11.width, quad11.height);	
 			}
@@ -1490,7 +1542,17 @@ void granCieloApp::draw(){
 					ofLine(0, 0, rm12.width, rm12.height);							
 					ofSetColor(0xFF0000);
 					ofLine(rm12.width, 0, 0, rm12.height);							
-				}																	
+				}	
+				if	(	viewSketchCasas	)	{
+					ofSetColor(0,0,0,20);
+					ofRect(0, 0, rm12.width, rm12.height);
+					
+					for( int i=400; i<500; i++ ) {
+						sketch[i].drawMouse(ofRandom(0,500), ofRandom(0,500), 0, 255, 15, 55, 155, 1);	
+					}
+					
+				}
+				
 				rm12.endOffscreenDraw();
 				rm12.drawOutputDiagnostically(quad12.x, quad12.y, quad12.width, quad12.height);	
 			}			
@@ -1648,30 +1710,31 @@ void granCieloApp::draw(){
 		{
 			if ( fbo21) {
 				rm21.startOffscreenDraw();
-					if	(	defaultFBO	)	{							
-						ofSetColor(255,255,255);
-						ofRect(0, 0, rm21.width, rm21.height);							
-						ofSetColor(0xFF0000);
-						ofLine(0, 0, rm21.width, rm21.height);							
-						ofSetColor(0xFF0000);
-						ofLine(rm21.width, 0, 0, rm21.height);							
-					}					
+				if	(	defaultFBO	)	{							
+					ofSetColor(255,255,255);
+					ofRect(0, 0, rm21.width, rm21.height);							
+					ofSetColor(0xFF0000);
+					ofLine(0, 0, rm21.width, rm21.height);							
+					ofSetColor(0xFF0000);
+					ofLine(rm21.width, 0, 0, rm21.height);							
+				}					
+			
+				if	(	viewVentanaRota	)	{										
+					ofFill();
+					ofSetColor(255,255,255,afbo21_23);												
+					ventanaRota.draw(0,0);
+				}
+				if	(	viewChimanea	)	{										
+					ofFill();
+					ofSetColor(255,255,255,afbo123);												
+					chimanea.draw(0,0);						
+				}		
+				if	( viewFlores21 )	{
+					ofFill();
+					ofSetColor(0xFFFFFF);
+					flores.draw(0,0);						
+				}	
 				
-					if	( viewFlores14 )	{
-						ofFill();
-						ofSetColor(0xFFFFFF);
-						flores.draw(0,0);						
-					}	
-					if	(	viewVentanaRota	)	{										
-						ofFill();
-						ofSetColor(255,255,255,afbo21_23);												
-						ventanaRota.draw(0,0);
-					}
-					if	(	viewChimanea	)	{										
-						ofFill();
-						ofSetColor(255,255,255,afbo123);												
-						chimanea.draw(0,0);						
-					}						
 				rm21.endOffscreenDraw();
 				rm21.drawOutputDiagnostically(quad21.x, quad21.y, quad21.width, quad21.height);	
 			}
@@ -1704,19 +1767,25 @@ void granCieloApp::draw(){
 		{
 			if ( fbo23 )	{
 				rm23.startOffscreenDraw();
-					if	(	defaultFBO	)	{							
-						ofSetColor(255,255,255);
-						ofRect(0, 0, rm23.width, rm23.height);							
-						ofSetColor(0xFF0000);
-						ofLine(0, 0, rm23.width, rm23.height);							
-						ofSetColor(0xFF0000);
-						ofLine(rm23.width, 0, 0, rm23.height);							
-					}					
-					if (	viewtejadosCasaDerecha	) {
-						ofFill();
-						ofSetColor(255,255,255,afbo21_23);												
-						tejadosCasaDerecha.draw(0,0);						
-					}					
+				if	(	defaultFBO	)	{							
+					ofSetColor(255,255,255);
+					ofRect(0, 0, rm23.width, rm23.height);							
+					ofSetColor(0xFF0000);
+					ofLine(0, 0, rm23.width, rm23.height);							
+					ofSetColor(0xFF0000);
+					ofLine(rm23.width, 0, 0, rm23.height);							
+				}		
+				if (	viewtejadosCasaDerecha	) {
+					ofFill();
+					ofSetColor(255,255,255,afbo21_23);												
+					tejadosCasaDerecha.draw(0,0);						
+				}		
+				if	( viewFlores23 )	{
+					ofFill();
+					ofSetColor(0xFFFFFF);
+					flores.draw(0,0);						
+				}	
+				
 				rm23.endOffscreenDraw();
 				rm23.drawOutputDiagnostically(quad23.x, quad23.y, quad23.width, quad23.height);	
 			}
