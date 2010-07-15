@@ -86,9 +86,10 @@ class granCieloApp : public ofBaseApp{
 		ofRectangle quad10, quad11, quad12, quad13, quad14, quad15, quad16, quad17, quad18, quad19;				
 		ofRectangle quad20, quad21, quad22, quad23, quad24, quad25, quad26, quad27, quad28, quad29;				
 
-		ofImage				charco, tejados, ventanaRoja, reloj, textura, tejadosInvierno, montanas, bosque, muroCasaAlta, tejadoCasaAlta;
-		ofImage				muroCasaDerecha, tejadosCasaDerecha, ventanaRota, flores, raton, ladrillo, mariposa, arbols, chimanea, burbujas;
-		ofImage				montanasBlancas, montanasRojas, casaRedondeada;
+		ofImage		charco, tejados, ventanaRoja, reloj, textura, tejadosInvierno, montanas, bosque, muroCasaAlta, tejadoCasaAlta;
+		ofImage		muroCasaDerecha, tejadosCasaDerecha, ventanaRota, flores, raton, ladrillo, mariposa, arbols, chimanea, burbujas;
+		ofImage		montanasBlancas, montanasRojas, casaRedondeada, campanario, casaDerecha, casaAqua, gotas, flore;
+		ofImage		muroCasaIzquierda, tejadosCasaIzquierda, tejadoCasaDerechaNueva, muroCasaDerechaNueva;	
 
 		ofVideoPlayer 		ciudadDestruida, ciudaddestruidaconlluvia, illusion, ormigas, floresVideo, chanTiChan;
 
@@ -103,7 +104,8 @@ class granCieloApp : public ofBaseApp{
 		bool viewCiudadDestruidaConLluvia,viewCiudadDestruida, viewChanTiChan, viewSoloChanTiChan;
 		bool viewChimanea, viewVentanaRota, viewMontanas, viewMontanasBlancas, viewMontanasRojas;
 		bool viewSketchCasas, viewMuroCasaDerecha, viewtejadosCasaDerecha, viewMuroCasaIzquierda, viewTejadoCasaIzquierda;
-		bool viewCasaGrande;
+		bool viewCasaGrande, viewCampanario, viewCasaDerecha, viewCasaAqua, viewGotas, viewCasasNegras;
+		bool viewCasaDerechaNueva;
 		int alphaFBO2, afbo6, afbo7, afbo8, afbo123, afbo15_17, afbo21_23;
 		
 		float xSolo, ySolo;

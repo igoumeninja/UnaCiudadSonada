@@ -96,25 +96,11 @@ void granCieloApp::setup(){
 		
 		strPosX = strPosY = 200;
 		}
-	Effect.setup();	//	Effects
-	LSystem.setup();	//	LSystem
 	{
-	//##############################################
-	//
-	//                  Deseo
-	//
-	//
-	deseo = "just  pull";
-	//
-	//
-	//
-	//##############################################
-	}
-	{
-		rm0.allocateForNScreens(1, 320, 280); //the first dedicate the screens
+		rm0.allocateForNScreens(1, 500, 500); //the first dedicate the screens
 		rm0.loadFromXml("xml/fboSettings0.xml");
 		quad0  = ofRectangle(1000,400,200,200);
-		rm1.allocateForNScreens(2, 3507, 1350); //the first dedicate the screensf
+		rm1.allocateForNScreens(1, 3507, 1350); //the first dedicate the screensf
 		rm1.loadFromXml("xml/fboSettings1.xml");
 		quad1  = ofRectangle(1000,400,200,200);
 		rm2.allocateForNScreens(2, 322,422); //the first dedicate the screens
@@ -141,7 +127,7 @@ void granCieloApp::setup(){
 		rm9.allocateForNScreens(2, 500, 500); //the first dedicate the screens the other 2 are the dimension of the image or of the video
 		rm9.loadFromXml("xml/fboSettings9.xml");
 		quad9  = ofRectangle(1000,400, 200, 200);
-
+		
 		rm10.allocateForNScreens(2, 500, 500); //the first dedicate the screens
 		rm10.loadFromXml("xml/fboSettings10.xml");
 		quad10  = ofRectangle(1000,400,200,200);
@@ -172,8 +158,8 @@ void granCieloApp::setup(){
 		rm19.allocateForNScreens(2, 500, 500); //the first dedicate the screens the other 2 are the dimension of the image or of the video
 		rm19.loadFromXml("xml/fboSettings19.xml");
 		quad19  = ofRectangle(1000,400, 200, 200);
-
-		rm20.allocateForNScreens(2, 500, 500); //the first dedicate the screens
+		
+		rm20.allocateForNScreens(1, 500, 500); //the first dedicate the screens
 		rm20.loadFromXml("xml/fboSettings20.xml");
 		quad20  = ofRectangle(1000,400,200,200);
 		rm21.allocateForNScreens(2, 500, 500); //the first dedicate the screens
@@ -185,7 +171,7 @@ void granCieloApp::setup(){
 		rm23.allocateForNScreens(2, 500, 500); //the first dedicate the screens
 		rm23.loadFromXml("xml/fboSettings23.xml");
 		quad23  = ofRectangle(1000,400,200,200);
-		rm24.allocateForNScreens(2, 500, 500); //the first dedicate the screens
+		rm24.allocateForNScreens(8, 500, 500); //the first dedicate the screens
 		rm24.loadFromXml("xml/fboSettings24.xml");
 		quad24  = ofRectangle(1000, 400, 200, 200);		
 		rm25.allocateForNScreens(2, 500, 500); //the first dedicate the screens
@@ -203,7 +189,7 @@ void granCieloApp::setup(){
 		rm29.allocateForNScreens(2, 500, 500); //the first dedicate the screens the other 2 are the dimension of the image or of the video
 		rm29.loadFromXml("xml/fboSettings29.xml");
 		quad29  = ofRectangle(1000,400, 200, 200);
-
+		
 		//Imagenes
 		tejados.loadImage("images/tejados500x333.png");
 		charco.loadImage("images/charco262x338.png");
@@ -220,14 +206,21 @@ void granCieloApp::setup(){
 		raton.loadImage("images/raton.png");	
 		ladrillo.loadImage("images/ladrillo.png");
 		mariposa.loadImage("images/mariposa.png");	
-	    chimanea.loadImage("images/chimanea.png");	
+	    chimanea.loadImage("images/chimanea.jpg");	
 		arbols.loadImage("images/arbol.png");
 		burbujas.loadImage("images/burbujas.png");
 		montanasBlancas.loadImage("images/montanasBlancas.jpg");
 		montanasRojas.loadImage("images/montanasRojas.jpg");
 		casaRedondeada.loadImage("images/casaRedondeada.jpg");
-			
-
+		campanario.loadImage("images/campanario.jpg");
+		casaAqua.loadImage("images/casaAqua.jpg");
+		casaDerecha.loadImage("images/casaDerecha.jpg");
+		gotas.loadImage("images/gotas.png");
+		flore.loadImage("images/flore.png");
+		muroCasaIzquierda.loadImage("images/muroCasaIzquierda.jpg");
+		tejadosCasaIzquierda.loadImage("images/TejadoOtono500x500.jpg");		
+		
+		
 		//Video
 		ciudadDestruida.loadMovie("videos/ciudadDestruida.avi");		
 		ciudaddestruidaconlluvia.loadMovie("videos/ciudaddestruidaconlluvia.avi");		
@@ -235,7 +228,25 @@ void granCieloApp::setup(){
 		ormigas.loadMovie("videos/ormigas.mov");	
 		floresVideo.loadMovie("videos/FloresYHojasQueCrecen430x660.avi");
 		chanTiChan.loadMovie("videos/chantichan.avi");	
-	}	//	FBO	
+	}	//	FBO		
+	{	
+		Effect.setup();
+	}	//	Effects
+	{	
+		LSystem.setup();
+	}	//	LSystem
+	{
+	//##############################################
+	//
+	//                  Deseo
+	//
+	//
+	deseo = "Quierro hacer la oscuridad luz";
+	//
+	//
+	//
+	//##############################################
+	}	//	Deseo
 	{	
 	ofBackground(r8,g8,b8);
 	
@@ -272,7 +283,7 @@ void granCieloApp::setup(){
 	ofEnableSmoothing();
 	ofEnableAlphaBlending(); 
 	//glutSetCursor(GLUT_CURSOR_CYCLE);  // change cursor icon (http://pyopengl.sourceforge.net/documentation/manual/glutSetCursor.3GLUT.html)
-	}	// Other
+	}	//  Other
 	
 }
 void granCieloApp::update(){ 
@@ -460,7 +471,43 @@ void granCieloApp::update(){
 			}			
 						
 		}	//	FBO alpha
-		{
+		{						
+			if ( m.getAddress() == "/viewCasaDerechaNuevaTRUE" )	{
+				viewCasaDerechaNueva = true;
+			}		
+			if ( m.getAddress() == "/viewCasaDerechaNuevaFALSE" )	{
+				viewCasaDerechaNueva = false;
+			}					
+			if ( m.getAddress() == "/viewGotasTRUE" )	{
+				viewGotas = true;
+			}		
+			if ( m.getAddress() == "/viewGotasFALSE" )	{
+				viewGotas = false;
+			}		
+			if ( m.getAddress() == "/viewCasasNegrasTRUE" )	{
+				viewCasasNegras = true;
+			}			
+			if ( m.getAddress() == "/viewCasasNegrasFALSE" )	{
+				viewCasasNegras = false;
+			}						
+			if ( m.getAddress() == "/viewCasaDerechaTRUE" )	{
+				viewCasaDerecha = true;
+			}			
+			if ( m.getAddress() == "/viewCasaDerechaFALSE" )	{
+				viewCasaDerecha = false;
+			}						
+			if ( m.getAddress() == "/viewCasaAquaTRUE" )	{
+				viewCasaAqua = true;
+			}			
+			if ( m.getAddress() == "/viewCasaAquaFALSE" )	{
+				viewCasaAqua = false;
+			}						
+			if ( m.getAddress() == "/viewCampanarioTRUE" )	{
+				viewCampanario = true;
+			}			
+			if ( m.getAddress() == "/viewCampanarioFALSE" )	{
+				viewCampanario = false;
+			}						
 			if ( m.getAddress() == "/viewCasaGrandeTRUE" )	{
 				viewCasaGrande = true;
 			}			
@@ -674,10 +721,20 @@ void granCieloApp::update(){
 				ofSetColor(0xFFFFFF);
 				strPosX = ofRandom(0, ofGetWidth());
 				strPosY = ofRandom(0, ofGetHeight());
-				//cout << "aqui" << endl;
 				ofPushMatrix();
 				ofTranslate(strPosX, strPosY, 0);
 				mariposa.draw(0, 0);						
+				ofPopMatrix();
+			}		
+			if ( m.getAddress() == "/flore" )	{
+				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // GL_SRC_ALPHA_SATURATE,GL_ONE     GL_SRC_ALPHA, GL_ONE
+				ofFill();
+				ofSetColor(0xFFFFFF);
+				strPosX = ofRandom(0, ofGetWidth());
+				strPosY = ofRandom(0, ofGetHeight());
+				ofPushMatrix();
+				ofTranslate(strPosX, strPosY, 0);
+				flore.draw(0, 0);						
 				ofPopMatrix();
 			}		
 			if ( m.getAddress() == "/arbol" )	{
@@ -1277,7 +1334,7 @@ void granCieloApp::draw(){
 				rm0.endOffscreenDraw();
 				rm0.drawOutputDiagnostically(quad0.x, quad0.y, quad0.width, quad0.height);	
 			}
-		}	//	FBO 0 catastrofe
+		}	//	FBO 0 centro
 		{
 			if ( fbo1) {
 				rm1.startOffscreenDraw();
@@ -1312,7 +1369,7 @@ void granCieloApp::draw(){
 				if	(viewMuroCasaIzquierda )	{					
 					ofFill();
 					ofSetColor(255,255,255,afbo123);												
-					ventanaRoja.draw(0,0);						
+					muroCasaIzquierda.draw(0,0);						
 				}
 				if	( viewFlores6 )	{
 					ofFill();
@@ -1347,24 +1404,24 @@ void granCieloApp::draw(){
 		{
 			if ( fbo4 )	{
 				rm4.startOffscreenDraw();
-					if	(	viewRaton4	)	{
-						ofFill();
-						ofSetColor(0xFFFFFF);
-						raton.draw(0,0);						
-					}
-					if	(	viewLadrillo4	)	{
-						ofFill();
-						ofSetColor(0xFFFFFF);
-						ladrillo.draw(0,0);						
-					}
-					if	(	defaultFBO	)	{							
-						ofSetColor(255,255,255);
-						ofRect(0, 0, rm4.width, rm4.height);							
-						ofSetColor(0xFF0000);
-						ofLine(0, 0, rm4.width, rm4.height);							
-						ofSetColor(0xFF0000);
-						ofLine(rm4.width, 0, 0, rm4.height);							
-					}													
+				if	(	defaultFBO	)	{							
+					ofSetColor(255,255,255);
+					ofRect(0, 0, rm4.width, rm4.height);							
+					ofSetColor(0xFF0000);
+					ofLine(0, 0, rm4.width, rm4.height);							
+					ofSetColor(0xFF0000);
+					ofLine(rm4.width, 0, 0, rm4.height);							
+				}																
+				if	(	viewRaton4	)	{
+					ofFill();
+					ofSetColor(0xFFFFFF);
+					raton.draw(0,0);						
+				}
+				if	(	viewLadrillo4	)	{
+					ofFill();
+					ofSetColor(0xFFFFFF);
+					ladrillo.draw(0,0);						
+				}
 				rm4.endOffscreenDraw();
 				rm4.drawOutputDiagnostically(quad4.x, quad4.y, quad4.width, quad4.height);	
 			}
@@ -1372,19 +1429,19 @@ void granCieloApp::draw(){
 		{
 			if ( fbo5 )	{
 				rm5.startOffscreenDraw();
-					if	(	defaultFBO	)	{							
-						ofSetColor(255,255,255);
-						ofRect(0, 0, rm5.width, rm5.height);							
-						ofSetColor(0xFF0000);
-						ofLine(0, 0, rm5.width, rm5.height);							
-						ofSetColor(0xFF0000);
-						ofLine(rm5.width, 0, 0, rm5.height);							
-					}																	
-//					if (viewBFBO5) {
-//						floresVideo.idleMovie();
-//						ofSetColor(0xFFFFFF);
-//						floresVideo.draw(0,0, 430, 660);
-//					}
+				if	(	defaultFBO	)	{							
+					ofSetColor(255,255,255);
+					ofRect(0, 0, rm5.width, rm5.height);							
+					ofSetColor(0xFF0000);
+					ofLine(0, 0, rm5.width, rm5.height);							
+					ofSetColor(0xFF0000);
+					ofLine(rm5.width, 0, 0, rm5.height);							
+				}	
+				if	(	viewLadrillo4	)	{
+					ofFill();
+					ofSetColor(0xFFFFFF);
+					ladrillo.draw(0,0);						
+				}				
 				rm5.endOffscreenDraw();
 				rm5.drawOutputDiagnostically(quad5.x, quad5.y, quad5.width, quad5.height);	
 			}
@@ -1418,19 +1475,27 @@ void granCieloApp::draw(){
 		{
 			if ( fbo7 )	{
 				rm7.startOffscreenDraw();
-					if	(	defaultFBO	)	{							
-						ofSetColor(255,255,255);
-						ofRect(0, 0, rm7.width, rm7.height);							
-						ofSetColor(0xFF0000);
-						ofLine(0, 0, rm7.width, rm7.height);							
-						ofSetColor(0xFF0000);
-						ofLine(rm7.width, 0, 0, rm7.height);							
-					}																	
-					if (	viewMontanas	) {
-						ofFill();
-						ofSetColor(255,255,255,afbo7);												
-						montanas.draw(0,0);																		
+				if	(	defaultFBO	)	{							
+					ofSetColor(255,255,255);
+					ofRect(0, 0, rm7.width, rm7.height);							
+					ofSetColor(0xFF0000);
+					ofLine(0, 0, rm7.width, rm7.height);							
+					ofSetColor(0xFF0000);
+					ofLine(rm7.width, 0, 0, rm7.height);							
+				}																	
+				if (	viewMontanas	) {
+					ofFill();
+					ofSetColor(255,255,255,afbo7);												
+					montanasRojas.draw(0,0);																		
+				}
+				if	(	viewSketchCasas	)	{
+					ofSetColor(0,0,0,20);
+					ofRect(0, 0, rm9.width, rm9.height);
+					for( int i=100; i<200; i++ ) {
+						sketch[i].drawMouse(ofRandom(110,500), ofRandom(0,500), 0, 55, 115, 195, 150, 1);	
 					}
+				}
+				
 				rm7.endOffscreenDraw();
 				rm7.drawOutputDiagnostically(quad7.x, quad7.y, quad7.width, quad7.height);	
 			}
@@ -1438,19 +1503,19 @@ void granCieloApp::draw(){
 		{
 			if ( fbo8 )	{
 				rm8.startOffscreenDraw();
-					if	(	defaultFBO	)	{							
-						ofSetColor(255,255,255);
-						ofRect(0, 0, rm8.width, rm8.height);							
-						ofSetColor(0xFF0000);
-						ofLine(0, 0, rm8.width, rm8.height);							
-						ofSetColor(0xFF0000);
-						ofLine(rm8.width, 0, 0, rm8.height);							
-					}																	
-					if (	viewMontanasBlancas	) {
-						ofFill();
-						ofSetColor(255,255,255,afbo8);												
-						montanasBlancas.draw(0,0);																		
-					}
+				if	(	defaultFBO	)	{							
+					ofSetColor(255,255,255);
+					ofRect(0, 0, rm8.width, rm8.height);							
+					ofSetColor(0xFF0000);	
+					ofLine(0, 0, rm8.width, rm8.height);							
+					ofSetColor(0xFF0000);
+					ofLine(rm8.width, 0, 0, rm8.height);							
+				}																	
+				if (	viewMontanasBlancas	) {
+					ofFill();
+					ofSetColor(255,255,255,afbo8);												
+					montanasRojas.draw(0,0);																		
+				}
 				rm8.endOffscreenDraw();
 				rm8.drawOutputDiagnostically(quad8.x, quad8.y, quad8.width, quad8.height);	
 			}
@@ -1469,7 +1534,7 @@ void granCieloApp::draw(){
 				if	(	viewSketchCasas	)	{
 					ofSetColor(0,0,0,20);
 					ofRect(0, 0, rm9.width, rm9.height);
-					for( int i=100; i<200; i++ ) {
+					for( int i=500; i<600; i++ ) {
 						sketch[i].drawMouse(ofRandom(0,500), ofRandom(0,500), 0, 155, 155, 155, 150, 1);	
 					}
 				}
@@ -1477,6 +1542,11 @@ void granCieloApp::draw(){
 					ofFill();
 					ofSetColor(0xFFFFFF);
 					casaRedondeada.draw(0,0);						
+				}				
+				if	(viewCasasNegras)	{					
+					ofFill();
+					ofSetColor(0,0,0);
+					ofRect(0, 0, 500, 500);
 				}				
 				rm9.endOffscreenDraw();
 				rm9.drawOutputDiagnostically(quad9.x, quad9.y, quad9.width, quad9.height);	
@@ -1502,6 +1572,17 @@ void granCieloApp::draw(){
 					}
 					
 				}
+				if	(viewCampanario)	{					
+					ofFill();
+					ofSetColor(0xFFFFFF);
+					campanario.draw(0,0);						
+				}
+				if	(viewCasasNegras)	{					
+					ofFill();
+					ofSetColor(0,0,0);
+					ofRect(0, 0, 500, 500);
+				}				
+				
 				
 				rm10.endOffscreenDraw();
 				rm10.drawOutputDiagnostically(quad10.x, quad10.y, quad10.width, quad10.height);	
@@ -1527,6 +1608,16 @@ void granCieloApp::draw(){
 					}
 					
 				}
+				if	(viewCasaAqua)	{					
+					ofFill();
+					ofSetColor(0xFFFFFF);
+					casaAqua.draw(0,0);						
+				}	
+				if	(viewCasasNegras)	{					
+					ofFill();
+					ofSetColor(0,0,0);
+					ofRect(0, 0, 500, 500);
+				}				
 				
 				rm11.endOffscreenDraw();
 				rm11.drawOutputDiagnostically(quad11.x, quad11.y, quad11.width, quad11.height);	
@@ -1552,6 +1643,16 @@ void granCieloApp::draw(){
 					}
 					
 				}
+				if	(viewCasaDerecha)	{					
+					ofFill();
+					ofSetColor(0xFFFFFF);
+					casaDerecha.draw(0,0);						
+				}	
+				if	(viewCasasNegras)	{					
+					ofFill();
+					ofSetColor(0,0,0);
+					ofRect(0, 0, 500, 500);
+				}				
 				
 				rm12.endOffscreenDraw();
 				rm12.drawOutputDiagnostically(quad12.x, quad12.y, quad12.width, quad12.height);	
@@ -1685,24 +1786,32 @@ void granCieloApp::draw(){
 		{
 			if ( fbo20 )	{
 				rm20.startOffscreenDraw();
-					if	(	defaultFBO	)	{							
-						ofSetColor(255,255,255);
-						ofRect(0, 0, rm20.width, rm20.height);							
-						ofSetColor(0xFF0000);
-						ofLine(0, 0, rm20.width, rm20.height);							
-						ofSetColor(0xFF0000);
-						ofLine(rm20.width, 0, 0, rm20.height);							
-					}					
-					if	(	viewRaton20	)	{
-						ofFill();
-						ofSetColor(0xFFFFFF);
-						raton.draw(0,0);						
+				if	(	defaultFBO	)	{							
+					ofSetColor(255,255,255);
+					ofRect(0, 0, rm20.width, rm20.height);							
+					ofSetColor(0xFF0000);
+					ofLine(0, 0, rm20.width, rm20.height);							
+					ofSetColor(0xFF0000);
+					ofLine(rm20.width, 0, 0, rm20.height);							
+				}					
+				if	(	viewRaton20	)	{
+					ofFill();
+					ofSetColor(0xFFFFFF);
+					raton.draw(0,0);						
+				}
+				if	(	viewLadrillo20	)	{
+					ofFill();
+					ofSetColor(0xFFFFFF);
+					ladrillo.draw(0,0);						
+				}
+				if	(	viewSketchCasas	)	{
+					ofSetColor(0,0,0,20);
+					ofRect(0, 0, rm9.width, rm9.height);
+					for( int i=600; i<700; i++ ) {
+						sketch[i].drawMouse(ofRandom(0,500), ofRandom(0,500), 0, 155, 15, 255, 150, 1);	
 					}
-					if	(	viewLadrillo20	)	{
-						ofFill();
-						ofSetColor(0xFFFFFF);
-						ladrillo.draw(0,0);						
-					}
+				}
+				
 				rm20.endOffscreenDraw();
 				rm20.drawOutputDiagnostically(quad20.x, quad20.y, quad20.width, quad20.height);	
 			}
@@ -1726,7 +1835,7 @@ void granCieloApp::draw(){
 				}
 				if	(	viewChimanea	)	{										
 					ofFill();
-					ofSetColor(255,255,255,afbo123);												
+					ofSetColor(255,255,255,255);												
 					chimanea.draw(0,0);						
 				}		
 				if	( viewFlores21 )	{
@@ -1734,7 +1843,11 @@ void granCieloApp::draw(){
 					ofSetColor(0xFFFFFF);
 					flores.draw(0,0);						
 				}	
-				
+				if	( viewCasaDerechaNueva )	{
+					ofFill();
+					ofSetColor(0xFFFFFF);
+					muroCasaDerechaNueva.draw(0,0);						
+				}					
 				rm21.endOffscreenDraw();
 				rm21.drawOutputDiagnostically(quad21.x, quad21.y, quad21.width, quad21.height);	
 			}
@@ -1785,20 +1898,39 @@ void granCieloApp::draw(){
 					ofSetColor(0xFFFFFF);
 					flores.draw(0,0);						
 				}	
-				
+				if	( viewCasaDerechaNueva )	{
+					ofFill();
+					ofSetColor(0xFFFFFF);
+					tejadoCasaDerechaNueva.draw(0,0);						
+				}									
 				rm23.endOffscreenDraw();
 				rm23.drawOutputDiagnostically(quad23.x, quad23.y, quad23.width, quad23.height);	
 			}
 		}	//	FBO 23
 		{
 			if ( fbo24 )	{
-				if ( doRender ) {			
-					rm24.startOffscreenDraw();
-						ofFill();
-						ofSetColor(25, 230, 255);
-						ofRect(0,0,500,500);
-					rm24.endOffscreenDraw();
+				rm24.startOffscreenDraw();
+				if	(	defaultFBO	)	{							
+					ofSetColor(255,255,255);
+					ofRect(0, 0, rm24.width, rm24.height);							
+					ofSetColor(0xFF0000);	
+					ofLine(0, 0, rm24.width, rm24.height);							
+					ofSetColor(0xFF0000);
+					ofLine(rm24.width, 0, 0, rm24.height);							
+				}	
+				if (viewGotas) {
+					glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // GL_SRC_ALPHA_SATURATE,GL_ONE     GL_SRC_ALPHA, GL_ONE
+					ofFill();
+					ofSetColor(0xFFFFFF);
+					strPosX = ofRandom(0, 500);
+					strPosY = ofRandom(0, 500);	
+					//cout << "aqui" << endl;
+					ofPushMatrix();
+					ofTranslate(strPosX, strPosY, 0);
+					gotas.draw(0, 0);						
+					ofPopMatrix();					
 				}
+				rm24.endOffscreenDraw();
 				rm24.drawOutputDiagnostically(quad24.x, quad24.y, quad24.width, quad24.height);	
 			}
 		}	//	FBO 24
