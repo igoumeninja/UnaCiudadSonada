@@ -118,7 +118,7 @@ void granCieloApp::setup(){
 		rm6.allocateForNScreens(1, 500, 500); //the first dedicate the screens the other 2 are the dimension of the image or of the video
 		rm6.loadFromXml("xml/fboSettings6.xml");
 		quad6  = ofRectangle(1000,400, 200, 200);
-		rm7.allocateForNScreens(3, 500, 500); //the first dedicate the screens the other 2 are the dimension of the image or of the video
+		rm7.allocateForNScreens(3, 500, 500); //the first dedicate the §§§screens the other 2 are the dimension of the image or of the video
 		rm7.loadFromXml("xml/fboSettings7.xml");
 		quad7  = ofRectangle(1000,400, 200, 200);
 		rm8.allocateForNScreens(2, 500, 500); //the first dedicate the screens the other 2 are the dimension of the image or of the video
@@ -218,7 +218,9 @@ void granCieloApp::setup(){
 		gotas.loadImage("images/gotas.png");
 		flore.loadImage("images/flore.png");
 		muroCasaIzquierda.loadImage("images/muroCasaIzquierda.jpg");
-		tejadosCasaIzquierda.loadImage("images/TejadoOtono500x500.jpg");		
+		tejadosCasaIzquierda.loadImage("images/TejadoOtono500x500.jpg");
+		rosa.loadImage("images/rosa.png");
+		jasmin.loadImage("images/jasmin.png");
 		
 		
 		//Video
@@ -679,6 +681,12 @@ void granCieloApp::update(){
 			
 		}	//	FBO View
 		{
+			if ( m.getAddress() == "/viewJasminTRUE" )	{
+				viewJasmin = true;
+			}		
+			if ( m.getAddress() == "/viewJasminFALSE" )	{
+				viewJasmin = false;
+			}		
 			if ( m.getAddress() == "/drawLine" )	{
 				Effect.drawLine();
 			}		
@@ -1290,10 +1298,22 @@ void granCieloApp::update(){
 void granCieloApp::draw(){
 	if	(	viewSoloChanTiChan	)	{
 		for( int i=0; i<100; i++ ) {
-			sketch[i].drawMouse(xSolo, ySolo, 0, r7, g7, b7, a7/3, 0);	
+			sketch[i].drawMouse(xSolo, ySolo, 0, r7, g7, b7, a7, 0);	
 		}
 		
 	}
+	if (viewJasmin) {
+		ofFill();
+		ofSetColor(0xFFFFFF);
+		strPosX = ofRandom(0, ofGetWidth());
+		strPosY = ofRandom(0, ofGetHeight());
+		ofPushMatrix();
+		ofTranslate(strPosX, strPosY, 0);
+		jasmin.draw(0, 0);						
+		ofPopMatrix();
+		
+	} // view Jasmin
+	
 	{	
 	//framerate
 	//	ofSetColor(0,0,0); //set font color

@@ -89,7 +89,7 @@ class granCieloApp : public ofBaseApp{
 		ofImage		charco, tejados, ventanaRoja, reloj, textura, tejadosInvierno, montanas, bosque, muroCasaAlta, tejadoCasaAlta;
 		ofImage		muroCasaDerecha, tejadosCasaDerecha, ventanaRota, flores, raton, ladrillo, mariposa, arbols, chimanea, burbujas;
 		ofImage		montanasBlancas, montanasRojas, casaRedondeada, campanario, casaDerecha, casaAqua, gotas, flore;
-		ofImage		muroCasaIzquierda, tejadosCasaIzquierda, tejadoCasaDerechaNueva, muroCasaDerechaNueva;	
+		ofImage		muroCasaIzquierda, tejadosCasaIzquierda, tejadoCasaDerechaNueva, muroCasaDerechaNueva, rosa, jasmin;	
 
 		ofVideoPlayer 		ciudadDestruida, ciudaddestruidaconlluvia, illusion, ormigas, floresVideo, chanTiChan;
 
@@ -105,8 +105,8 @@ class granCieloApp : public ofBaseApp{
 		bool viewChimanea, viewVentanaRota, viewMontanas, viewMontanasBlancas, viewMontanasRojas;
 		bool viewSketchCasas, viewMuroCasaDerecha, viewtejadosCasaDerecha, viewMuroCasaIzquierda, viewTejadoCasaIzquierda;
 		bool viewCasaGrande, viewCampanario, viewCasaDerecha, viewCasaAqua, viewGotas, viewCasasNegras;
-		bool viewCasaDerechaNueva;
-		int alphaFBO2, afbo6, afbo7, afbo8, afbo123, afbo15_17, afbo21_23;
+		bool viewCasaDerechaNueva, viewJasmin;
+		int  alphaFBO2, afbo6, afbo7, afbo8, afbo123, afbo15_17, afbo21_23;
 		
 		float xSolo, ySolo;
 		
