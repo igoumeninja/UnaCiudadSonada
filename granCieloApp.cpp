@@ -97,7 +97,7 @@ void granCieloApp::setup(){
 		strPosX = strPosY = 200;
 		}
 	{
-		rm0.allocateForNScreens(1, 500, 500); //the first dedicate the screens
+		rm0.allocateForNScreens(1, 320, 280); //the first dedicate the screens
 		rm0.loadFromXml("xml/fboSettings0.xml");
 		quad0  = ofRectangle(1000,400,200,200);
 		rm1.allocateForNScreens(1, 3507, 1350); //the first dedicate the screensf
