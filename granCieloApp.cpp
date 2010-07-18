@@ -109,10 +109,10 @@ void granCieloApp::setup(){
 		rm3.allocateForNScreens(2, 320,280); //the first dedicate the screens the other 2 are the dimension of the image or of the video
 		rm3.loadFromXml("xml/fboSettings3.xml");
 		quad3  = ofRectangle(1000,400,200,200);
-		rm4.allocateForNScreens(2, 400, 396); //the first dedicate the screens the other 2 are the dimension of the image or of the video
+		rm4.allocateForNScreens(1, 400, 396); //the first dedicate the screens the other 2 are the dimension of the image or of the video
 		rm4.loadFromXml("xml/fboSettings4.xml");
 		quad4  = ofRectangle(1000, 400, 200, 200);		
-		rm5.allocateForNScreens(1, 430, 660); //the first dedicate the screens the other 2 are the dimension of the image or of the video
+		rm5.allocateForNScreens(1, 200, 200); //the first dedicate the screens the other 2 are the dimension of the image or of the video
 		rm5.loadFromXml("xml/fboSettings5.xml");
 		quad5  = ofRectangle(1000, 400, 200, 200);
 		rm6.allocateForNScreens(1, 500, 500); //the first dedicate the screens the other 2 are the dimension of the image or of the video
@@ -152,14 +152,14 @@ void granCieloApp::setup(){
 		rm17.allocateForNScreens(1, 500, 500); //the first dedicate the screens the other 2 are the dimension of the image or of the video
 		rm17.loadFromXml("xml/fboSettings17.xml");
 		quad17  = ofRectangle(1000,400, 200, 200);
-		rm18.allocateForNScreens(1, 500, 500); //the first dedicate the screens the other 2 are the dimension of the image or of the video
+		rm18.allocateForNScreens(1, 300, 200); //the first dedicate the screens the other 2 are the dimension of the image or of the video
 		rm18.loadFromXml("xml/fboSettings18.xml");
 		quad18  = ofRectangle(1000,400, 200, 200);
 		rm19.allocateForNScreens(2, 500, 500); //the first dedicate the screens the other 2 are the dimension of the image or of the video
 		rm19.loadFromXml("xml/fboSettings19.xml");
 		quad19  = ofRectangle(1000,400, 200, 200);
 		
-		rm20.allocateForNScreens(1, 500, 500); //the first dedicate the screens
+		rm20.allocateForNScreens(1, 200, 220); //the first dedicate the screens
 		rm20.loadFromXml("xml/fboSettings20.xml");
 		quad20  = ofRectangle(1000,400,200,200);
 		rm21.allocateForNScreens(2, 500, 500); //the first dedicate the screens
@@ -220,8 +220,13 @@ void granCieloApp::setup(){
 		muroCasaIzquierda.loadImage("images/muroCasaIzquierda.jpg");
 		tejadosCasaIzquierda.loadImage("images/TejadoOtono500x500.jpg");
 		rosa.loadImage("images/rosa.png");
-		jasmin.loadImage("images/jasmin.png");
-		
+		jasmin.loadImage("images/jasminmas.png");
+		ojo.loadImage("images/ojo.png");		//200x200
+		bar.loadImage("images/bar.png");		//300x200		
+		barNuevo.loadImage("images/barNuevo.png");		//400x396	
+		casaXBar.loadImage("images/casaXBar.png");		//400x396	
+		muroCasaDerechaNueva.loadImage("images/muroCasaPillar.png");		//400x396	
+		tejadoCasaDerechaNueva.loadImage("images/tejadoPilar.png");		//400x396	
 		
 		//Video
 		ciudadDestruida.loadMovie("videos/ciudadDestruida.avi");		
@@ -230,6 +235,7 @@ void granCieloApp::setup(){
 		ormigas.loadMovie("videos/ormigas.mov");	
 		floresVideo.loadMovie("videos/FloresYHojasQueCrecen430x660.avi");
 		chanTiChan.loadMovie("videos/chantichan.avi");	
+		pero.loadMovie("videos/pero.avi");			
 	}	//	FBO		
 	{	
 		Effect.setup();
@@ -243,7 +249,7 @@ void granCieloApp::setup(){
 	//                  Deseo
 	//
 	//
-	deseo = "Quierro hacer la oscuridad luz";
+	deseo = "Quiero hacer la oscuridad luz";
 	//
 	//
 	//
@@ -473,7 +479,39 @@ void granCieloApp::update(){
 			}			
 						
 		}	//	FBO alpha
-		{						
+		{		
+			
+			
+			if ( m.getAddress() == "/viewCasaXBarTRUE" )	{
+				viewCasaXBar = true;
+			}		
+			if ( m.getAddress() == "/viewCasaXBarFALSE" )	{
+				viewCasaXBar = false;
+			}					
+			if ( m.getAddress() == "/viewBarNuevoTRUE" )	{
+				viewBarNuevo = true;
+			}		
+			if ( m.getAddress() == "/viewBarNuevoFALSE" )	{
+				viewBarNuevo = false;
+			}					
+			if ( m.getAddress() == "/viewOjoTRUE" )	{
+				viewOjo = true;
+			}		
+			if ( m.getAddress() == "/viewOjoFALSE" )	{
+				viewOjo = false;
+			}					
+			if ( m.getAddress() == "/viewBarTRUE" )	{
+				viewBar = true;
+			}		
+			if ( m.getAddress() == "/viewBarFALSE" )	{
+				viewBar = false;
+			}					
+			if ( m.getAddress() == "/viewPeroTRUE" )	{
+				viewPero = true;
+			}		
+			if ( m.getAddress() == "/viewPeroFALSE" )	{
+				viewPero = false;
+			}					
 			if ( m.getAddress() == "/viewCasaDerechaNuevaTRUE" )	{
 				viewCasaDerechaNueva = true;
 			}		
@@ -696,6 +734,17 @@ void granCieloApp::update(){
 			if ( m.getAddress() == "/startEffect" )	{
 				Effect.start();
 			}		
+			if ( m.getAddress() == "/deseoGrande" )	{
+				a8 = r8 = g8 = b8 = 0;
+				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // GL_SRC_ALPHA_SATURATE,GL_ONE     GL_SRC_ALPHA, GL_ONE
+				ofFill();
+				ofSetColor(255,255,255,255);	// even
+				ofPushMatrix();
+				ofTranslate(1000, 400, 0);
+				testFontSmall.loadFont("Batang.ttf", 40, true, true, true);
+				testFontSmall.drawString(deseo,0, 0);		
+				ofPopMatrix();
+			}		
 			if ( m.getAddress() == "/deseo" )	{
 				a8 = r8 = g8 = b8 = 0;
 				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // GL_SRC_ALPHA_SATURATE,GL_ONE     GL_SRC_ALPHA, GL_ONE
@@ -705,7 +754,7 @@ void granCieloApp::update(){
 				ofSetColor(255,255,255,255);	// even
 				ofPushMatrix();
 				ofTranslate(strPosX, strPosY, 0);
-				testFontSmall.loadFont("Batang.ttf", int(ofRandom(2,40)), true, true, true);
+				testFontSmall.loadFont("Batang.ttf", int(ofRandom(2,20)), true, true, true);
 				testFontSmall.drawString(deseo,0, 0);		
 				ofPopMatrix();
 			}		
@@ -1312,8 +1361,7 @@ void granCieloApp::draw(){
 		jasmin.draw(0, 0);						
 		ofPopMatrix();
 		
-	} // view Jasmin
-	
+	} // view Jasmin	
 	{	
 	//framerate
 	//	ofSetColor(0,0,0); //set font color
@@ -1368,7 +1416,7 @@ void granCieloApp::draw(){
 				}					
 				if	(viewTejadoCasaIzquierda)	{												
 					ofFill();
-					ofSetColor(255,255,255,afbo123);												
+					ofSetColor(0xFFFFFF);
 					tejadosInvierno.draw(0,0);						
 				}					
 				rm1.endOffscreenDraw();
@@ -1388,7 +1436,7 @@ void granCieloApp::draw(){
 				}	
 				if	(viewMuroCasaIzquierda )	{					
 					ofFill();
-					ofSetColor(255,255,255,afbo123);												
+					ofSetColor(0xFFFFFF);
 					muroCasaIzquierda.draw(0,0);						
 				}
 				if	( viewFlores6 )	{
@@ -1432,15 +1480,10 @@ void granCieloApp::draw(){
 					ofSetColor(0xFF0000);
 					ofLine(rm4.width, 0, 0, rm4.height);							
 				}																
-				if	(	viewRaton4	)	{
+				if	(	viewBarNuevo	)	{
 					ofFill();
 					ofSetColor(0xFFFFFF);
-					raton.draw(0,0);						
-				}
-				if	(	viewLadrillo4	)	{
-					ofFill();
-					ofSetColor(0xFFFFFF);
-					ladrillo.draw(0,0);						
+					barNuevo.draw(0,0);						
 				}
 				rm4.endOffscreenDraw();
 				rm4.drawOutputDiagnostically(quad4.x, quad4.y, quad4.width, quad4.height);	
@@ -1457,10 +1500,10 @@ void granCieloApp::draw(){
 					ofSetColor(0xFF0000);
 					ofLine(rm5.width, 0, 0, rm5.height);							
 				}	
-				if	(	viewLadrillo4	)	{
+				if	(viewOjo)	{
 					ofFill();
 					ofSetColor(0xFFFFFF);
-					ladrillo.draw(0,0);						
+					ojo.draw(0,0);						
 				}				
 				rm5.endOffscreenDraw();
 				rm5.drawOutputDiagnostically(quad5.x, quad5.y, quad5.width, quad5.height);	
@@ -1784,6 +1827,11 @@ void granCieloApp::draw(){
 					ofSetColor(0xFF0000);
 					ofLine(rm18.width, 0, 0, rm18.height);							
 				}	
+				if (viewBar) {
+					ofFill();
+					ofSetColor(0xFFFFFF);
+					bar.draw(0,0);						
+				}
 				rm18.endOffscreenDraw();
 				rm18.drawOutputDiagnostically(quad18.x, quad18.y, quad18.width, quad18.height);	
 			}
@@ -1798,7 +1846,13 @@ void granCieloApp::draw(){
 					ofLine(0, 0, rm19.width, rm19.height);							
 					ofSetColor(0xFF0000);
 					ofLine(rm19.width, 0, 0, rm19.height);							
-				}					
+				}	
+				if (viewCasaXBar) {
+					ofFill();
+					ofSetColor(0xFFFFFF);
+					casaXBar.draw(0,0);						
+				}
+				
 				rm19.endOffscreenDraw();
 				rm19.drawOutputDiagnostically(quad19.x, quad19.y, quad19.width, quad19.height);	
 			}
@@ -1830,6 +1884,13 @@ void granCieloApp::draw(){
 					for( int i=600; i<700; i++ ) {
 						sketch[i].drawMouse(ofRandom(0,500), ofRandom(0,500), 0, 155, 15, 255, 150, 1);	
 					}
+				}
+				if	(	viewPero	)	{
+					pero.idleMovie();
+					ofSetColor(0xFFFFFF);
+					pero.play();							
+					pero.draw(0,0, 320,280);
+					
 				}
 				
 				rm20.endOffscreenDraw();
