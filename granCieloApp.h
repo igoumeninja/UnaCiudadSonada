@@ -114,10 +114,10 @@ class granCieloApp : public ofBaseApp{
 		
 		
 		//############  Deseo   ###################
-		string deseo;
+		string deseo, deseo1, deseo2, deseo3, deseo4, deseo5;
 		
 		//##########	Beat  #################
-		ofTrueTypeFont testFont, testFontSmall;
+		ofTrueTypeFont testFont, testFontSmall, deseosFont, deseosFontSmall;
 		string str,beatStr;
 		int	beat, beatsView;
 		int strPosX, strPosY;

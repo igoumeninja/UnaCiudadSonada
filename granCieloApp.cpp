@@ -161,7 +161,7 @@ void granCieloApp::setup(){
 		
 		rm20.allocateForNScreens(1, 200, 220); //the first dedicate the screens
 		rm20.loadFromXml("xml/fboSettings20.xml");
-		quad20  = ofRectangle(1000,400,200,200);
+		quad20  = ofRectangle(1000,400,200,200);\
 		rm21.allocateForNScreens(2, 500, 500); //the first dedicate the screens
 		rm21.loadFromXml("xml/fboSettings21.xml");
 		quad21  = ofRectangle(1000,400,200,200);
@@ -249,7 +249,11 @@ void granCieloApp::setup(){
 	//                  Deseo
 	//
 	//
-	deseo = "Quiero hacer la oscuridad luz";
+	deseo1 = "Quiero hacer la oscuridad luz";
+	deseo2 = "Salute y forse al canute";
+	deseo3 = "Pero no me jodas";
+	deseo4 = "Mujeres y vino";
+	deseo5 = "Gamoti panakola mou gamo";		
 	//
 	//
 	//
@@ -258,7 +262,11 @@ void granCieloApp::setup(){
 	{	
 	ofBackground(r8,g8,b8);
 	
+		
 	testFont.loadFont("Batang.ttf", 96, true, true, true);
+	deseosFont.loadFont("Chalkduster.ttf", 20, true, true, true);
+	deseosFontSmall.loadFont("Chalkduster.ttf", 10, true, true, true);
+		
 	testFontSmall.loadFont("Batang.ttf", 36, true, true, true);
 	
 	texScreen.allocate(ofGetWidth(), ofGetHeight(), GL_RGB);	//1920x1080
@@ -719,21 +727,117 @@ void granCieloApp::update(){
 			
 		}	//	FBO View
 		{
-			if ( m.getAddress() == "/viewJasminTRUE" )	{
-				viewJasmin = true;
+			if ( m.getAddress() == "/deseo1" )	{
+				a8 = r8 = g8 = b8 = 0;
+				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // GL_SRC_ALPHA_SATURATE,GL_ONE     GL_SRC_ALPHA, GL_ONE
+				ofFill();
+				ofSetColor(255,255,255,255);	// even
+				ofPushMatrix();
+				ofTranslate(800, 50, 0);
+				deseosFont.drawString(deseo1,0, 0);		
+				ofPopMatrix();
 			}		
-			if ( m.getAddress() == "/viewJasminFALSE" )	{
-				viewJasmin = false;
+			if ( m.getAddress() == "/deseo2" )	{
+				a8 = r8 = g8 = b8 = 0;
+				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // GL_SRC_ALPHA_SATURATE,GL_ONE     GL_SRC_ALPHA, GL_ONE
+				ofFill();
+				ofSetColor(255,255,255,255);	// even
+				ofPushMatrix();
+				ofTranslate(800, 50, 0);
+				deseosFont.drawString(deseo2,0, 0);		
+				ofPopMatrix();
 			}		
-			if ( m.getAddress() == "/drawLine" )	{
-				Effect.drawLine();
+			if ( m.getAddress() == "/deseo3" )	{
+				a8 = r8 = g8 = b8 = 0;
+				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // GL_SRC_ALPHA_SATURATE,GL_ONE     GL_SRC_ALPHA, GL_ONE
+				ofFill();
+				ofSetColor(255,255,255,255);	// even
+				ofPushMatrix();
+				ofTranslate(800, 50, 0);
+				deseosFont.drawString(deseo3,0, 0);		
+				ofPopMatrix();
 			}		
-			if ( m.getAddress() == "/drawLineVertical" )	{
-				Effect.drawLineVertical();
+			if ( m.getAddress() == "/deseo4" )	{
+				a8 = r8 = g8 = b8 = 0;
+				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // GL_SRC_ALPHA_SATURATE,GL_ONE     GL_SRC_ALPHA, GL_ONE
+				ofFill();
+				ofSetColor(255,255,255,255);	// even
+				ofPushMatrix();
+				ofTranslate(800, 50, 0);
+				deseosFont.drawString(deseo4,0, 0);		
+				ofPopMatrix();
 			}		
-			if ( m.getAddress() == "/startEffect" )	{
-				Effect.start();
+			if ( m.getAddress() == "/deseo5" )	{
+				a8 = r8 = g8 = b8 = 0;
+				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // GL_SRC_ALPHA_SATURATE,GL_ONE     GL_SRC_ALPHA, GL_ONE
+				ofFill();
+				ofSetColor(255,255,255,255);	// even
+				ofPushMatrix();
+				ofTranslate(800, 50, 0);
+				deseosFont.drawString(deseo5,0, 0);		
+				ofPopMatrix();
+			}	
+			if ( m.getAddress() == "/deseo1mucho" )	{
+				a8 = r8 = g8 = b8 = 0;
+				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // GL_SRC_ALPHA_SATURATE,GL_ONE     GL_SRC_ALPHA, GL_ONE
+				ofFill();
+				strPosX = ofRandom(0, ofGetWidth());
+				strPosY = ofRandom(0, ofGetHeight());
+				ofSetColor(255,255,255,255);	// even
+				ofPushMatrix();
+				ofTranslate(strPosX, strPosY, 0);
+				deseosFontSmall.drawString(deseo1,0, 0);		
+				ofPopMatrix();
 			}		
+			if ( m.getAddress() == "/deseo2mucho" )	{
+				a8 = r8 = g8 = b8 = 0;
+				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // GL_SRC_ALPHA_SATURATE,GL_ONE     GL_SRC_ALPHA, GL_ONE
+				ofFill();
+				strPosX = ofRandom(0, ofGetWidth());
+				strPosY = ofRandom(0, ofGetHeight());
+				ofSetColor(255,255,255,255);	// even
+				ofPushMatrix();
+				ofTranslate(strPosX, strPosY, 0);
+				deseosFontSmall.drawString(deseo2,0, 0);		
+				ofPopMatrix();
+			}		
+			if ( m.getAddress() == "/deseo3mucho" )	{
+				a8 = r8 = g8 = b8 = 0;
+				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // GL_SRC_ALPHA_SATURATE,GL_ONE     GL_SRC_ALPHA, GL_ONE
+				ofFill();
+				strPosX = ofRandom(0, ofGetWidth());
+				strPosY = ofRandom(0, ofGetHeight());
+				ofSetColor(255,255,255,255);	// even
+				ofPushMatrix();
+				ofTranslate(strPosX, strPosY, 0);
+				deseosFontSmall.drawString(deseo3,0, 0);		
+				ofPopMatrix();
+			}		
+			if ( m.getAddress() == "/deseo4mucho" )	{
+				a8 = r8 = g8 = b8 = 0;
+				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // GL_SRC_ALPHA_SATURATE,GL_ONE     GL_SRC_ALPHA, GL_ONE
+				ofFill();
+				strPosX = ofRandom(0, ofGetWidth());
+				strPosY = ofRandom(0, ofGetHeight());
+				ofSetColor(255,255,255,255);	// even
+				ofPushMatrix();
+				ofTranslate(strPosX, strPosY, 0);
+				deseosFontSmall.drawString(deseo4,0, 0);		
+				ofPopMatrix();
+			}		
+			if ( m.getAddress() == "/deseo5mucho" )	{
+				a8 = r8 = g8 = b8 = 0;
+				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // GL_SRC_ALPHA_SATURATE,GL_ONE     GL_SRC_ALPHA, GL_ONE
+				ofFill();
+				strPosX = ofRandom(0, ofGetWidth());
+				strPosY = ofRandom(0, ofGetHeight());
+				ofSetColor(255,255,255,255);	// even
+				ofPushMatrix();
+				ofTranslate(strPosX, strPosY, 0);
+				deseosFontSmall.drawString(deseo5,0, 0);		
+				ofPopMatrix();
+			}		
+			
 			if ( m.getAddress() == "/deseoGrande" )	{
 				a8 = r8 = g8 = b8 = 0;
 				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // GL_SRC_ALPHA_SATURATE,GL_ONE     GL_SRC_ALPHA, GL_ONE
@@ -754,8 +858,7 @@ void granCieloApp::update(){
 				ofSetColor(255,255,255,255);	// even
 				ofPushMatrix();
 				ofTranslate(strPosX, strPosY, 0);
-				testFontSmall.loadFont("Batang.ttf", int(ofRandom(2,20)), true, true, true);
-				testFontSmall.drawString(deseo,0, 0);		
+				deseosFont.drawString(deseo1,0, 0);		
 				ofPopMatrix();
 			}		
 			if ( m.getAddress() == "/deseoConString" )	{
@@ -771,6 +874,23 @@ void granCieloApp::update(){
 				testFontSmall.loadFont("Batang.ttf", int(ofRandom(2,40)), true, true, true);
 				testFontSmall.drawString(deseo,0, 0);		
 				ofPopMatrix();
+			}		
+		}	//	Deseos
+		{
+			if ( m.getAddress() == "/viewJasminTRUE" )	{
+				viewJasmin = true;
+			}		
+			if ( m.getAddress() == "/viewJasminFALSE" )	{
+				viewJasmin = false;
+			}		
+			if ( m.getAddress() == "/drawLine" )	{
+				Effect.drawLine();
+			}		
+			if ( m.getAddress() == "/drawLineVertical" )	{
+				Effect.drawLineVertical();
+			}		
+			if ( m.getAddress() == "/startEffect" )	{
+				Effect.start();
 			}		
 			if ( m.getAddress() == "/mariposa" )	{
 				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // GL_SRC_ALPHA_SATURATE,GL_ONE     GL_SRC_ALPHA, GL_ONE
@@ -2075,7 +2195,6 @@ void granCieloApp::draw(){
 				rm29.drawOutputDiagnostically(quad29.x, quad29.y, quad29.width, quad29.height);	
 			}
 		}	//	FBO 29
-
 	}	//	FBO Manager
 	if	(view_fillBackground)	{
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // GL_SRC_ALPHA_SATURATE,GL_ONE     GL_SRC_ALPHA, GL_ONE
