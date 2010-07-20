@@ -106,7 +106,7 @@ void granCieloApp::setup(){
 		rm2.allocateForNScreens(2, 322,422); //the first dedicate the screens
 		rm2.loadFromXml("xml/fboSettings2.xml");
 		quad2  = ofRectangle(1000,400,200,200);
-		rm3.allocateForNScreens(2, 320,280); //the first dedicate the screens the other 2 are the dimension of the image or of the video
+		rm3.allocateForNScreens(2, 300,308); //the first dedicate the screens the other 2 are the dimension of the image or of the video
 		rm3.loadFromXml("xml/fboSettings3.xml");
 		quad3  = ofRectangle(1000,400,200,200);
 		rm4.allocateForNScreens(1, 400, 396); //the first dedicate the screens the other 2 are the dimension of the image or of the video
@@ -235,7 +235,9 @@ void granCieloApp::setup(){
 		ormigas.loadMovie("videos/ormigas.mov");	
 		floresVideo.loadMovie("videos/FloresYHojasQueCrecen430x660.avi");
 		chanTiChan.loadMovie("videos/chantichan.avi");	
-		pero.loadMovie("videos/pero.avi");			
+		pero.loadMovie("videos/pero.avi");	
+		hormigas.loadMovie("videos/hormigas300x308.mov");	
+		
 	}	//	FBO		
 	{	
 		Effect.setup();
@@ -249,11 +251,11 @@ void granCieloApp::setup(){
 	//                  Deseo
 	//
 	//
-	deseo1 = "Quiero hacer la oscuridad luz";
-	deseo2 = "Salute y forse al canute";
-	deseo3 = "Pero no me jodas";
-	deseo4 = "Mujeres y vino";
-	deseo5 = "Gamoti panakola mou gamo";		
+	deseo1 = "Santi me Pone";
+	deseo2 = "Me Pone muy cachondo";
+	deseo3 = "Pero me pone mas el Oso";
+	deseo4 = "Aris Love valencia";
+	deseo5 = "Aris Mola";		
 	//
 	//
 	//
@@ -489,6 +491,12 @@ void granCieloApp::update(){
 		}	//	FBO alpha
 		{		
 			
+			if ( m.getAddress() == "/viewHormigasTRUE" )	{
+				viewHormigas = true;
+			}		
+			if ( m.getAddress() == "/viewHormigasFALSE" )	{
+				viewHormigas = false;
+			}					
 			
 			if ( m.getAddress() == "/viewCasaXBarTRUE" )	{
 				viewCasaXBar = true;
@@ -896,8 +904,8 @@ void granCieloApp::update(){
 				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // GL_SRC_ALPHA_SATURATE,GL_ONE     GL_SRC_ALPHA, GL_ONE
 				ofFill();
 				ofSetColor(0xFFFFFF);
-				strPosX = ofRandom(0, ofGetWidth());
-				strPosY = ofRandom(0, ofGetHeight());
+				strPosX = ofRandom(800, 1600);
+				strPosY = ofRandom(0, 300);
 				ofPushMatrix();
 				ofTranslate(strPosX, strPosY, 0);
 				mariposa.draw(0, 0);						
@@ -1572,19 +1580,21 @@ void granCieloApp::draw(){
 		{
 			if ( fbo3 )	{
 				rm3.startOffscreenDraw();
-					if	(	defaultFBO	)	{							
-						ofSetColor(255,255,255);
-						ofRect(0, 0, rm3.width, rm3.height);							
-						ofSetColor(0xFF0000);
-						ofLine(0, 0, rm3.width, rm3.height);							
-						ofSetColor(0xFF0000);
-						ofLine(rm3.width, 0, 0, rm3.height);							
-					}									
-//					if (	viewFBO3	) {
-//						illusion.idleMovie();
-//						ofSetColor(0xFFFFFF);
-//						illusion.draw(0,0, 320,280);						
-//					}
+				if	(	defaultFBO	)	{							
+					ofSetColor(255,255,255);
+					ofRect(0, 0, rm3.width, rm3.height);							
+					ofSetColor(0xFF0000);
+					ofLine(0, 0, rm3.width, rm3.height);							
+					ofSetColor(0xFF0000);
+					ofLine(rm3.width, 0, 0, rm3.height);							
+				}									
+				if	(	viewHormigas	)	{
+					pero.idleMovie();
+					ofSetColor(0xFFFFFF);
+					hormigas.play();							
+					hormigas.draw(0,0, 320,280);
+					
+				}
 				rm3.endOffscreenDraw();
 				rm3.drawOutputDiagnostically(quad3.x, quad3.y, quad3.width, quad3.height);	
 			}

@@ -41,7 +41,8 @@ ofxLSystem::ofxLSystem()	{
 }
 
 void ofxLSystem::setup(){
-	golondrina.loadImage("images/golondrina.png");	
+	//golondrina.loadImage("images/golondrina.png");	
+	golondrina.loadImage("images/mariposa100.png");		
 	depthLengthDefault = 50;
 	scale = 0.65;
 	startGeneration = true;
