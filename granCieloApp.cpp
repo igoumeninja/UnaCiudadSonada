@@ -190,6 +190,8 @@ void granCieloApp::setup(){
 		rm29.loadFromXml("xml/fboSettings29.xml");
 		quad29  = ofRectangle(1000,400, 200, 200);
 		
+	}	//	FBO
+	{
 		//Imagenes
 		tejados.loadImage("images/tejados500x333.png");
 		charco.loadImage("images/charco262x338.png");
@@ -226,7 +228,13 @@ void granCieloApp::setup(){
 		barNuevo.loadImage("images/barNuevo.png");		//400x396	
 		casaXBar.loadImage("images/casaXBar.png");		//400x396	
 		muroCasaDerechaNueva.loadImage("images/muroCasaPillar.png");		//400x396	
-		tejadoCasaDerechaNueva.loadImage("images/tejadoPilar.png");		//400x396	
+		tejadoCasaDerechaNueva.loadImage("images/tejadoPilar.png");		//400x396
+		tokyo.loadImage("images/tokyo.png");		
+		valencia.loadImage("images/valencia.png");		
+		azucar.loadImage("images/azucar.png");				
+		columna.loadImage("images/columna.png");		
+		paris.loadImage("images/paris.png");		
+		trullo.loadImage("images/trullo.png");		
 		
 		//Video
 		ciudadDestruida.loadMovie("videos/ciudadDestruida.avi");		
@@ -238,7 +246,8 @@ void granCieloApp::setup(){
 		pero.loadMovie("videos/pero.avi");	
 		hormigas.loadMovie("videos/hormigas300x308.mov");	
 		
-	}	//	FBO		
+		
+	}	//	Imagenes - Video
 	{	
 		Effect.setup();
 	}	//	Effects
@@ -251,11 +260,11 @@ void granCieloApp::setup(){
 	//                  Deseo
 	//
 	//
-	deseo1 = "Santi me Pone";
-	deseo2 = "Me Pone muy cachondo";
-	deseo3 = "Pero me pone mas el Oso";
-	deseo4 = "Aris Love valencia";
-	deseo5 = "Aris Mola";		
+	deseo1 = "Javi: akshfgaskfgadfg";
+	deseo2 = "Julia: pero no me jodas";
+	deseo3 = "Quiero aroz negro con ajo aceite";
+	deseo4 = "Menexedes kai zouboulia";
+	deseo5 = "Madre mia";		
 	//
 	//
 	//
@@ -885,6 +894,37 @@ void granCieloApp::update(){
 			}		
 		}	//	Deseos
 		{
+			if ( m.getAddress() == "/viewAzucarTRUE" )	{
+				ofFill();
+				ofSetColor(0xFFFFFF);
+				azucar.draw(0, 0);						
+			}		
+			if ( m.getAddress() == "/viewColumnaTRUE" )	{
+				ofFill();
+				ofSetColor(0xFFFFFF);
+				columna.draw(0, 0);						
+			}		
+			if ( m.getAddress() == "/viewParisTRUE" )	{
+				ofFill();
+				ofSetColor(0xFFFFFF);
+				paris.draw(0, 0);						
+			}		
+			if ( m.getAddress() == "/viewTokyoTRUE" )	{
+				ofFill();
+				ofSetColor(0xFFFFFF);
+				tokyo.draw(0, 0);						
+			}		
+			
+			if ( m.getAddress() == "/viewTrulloTRUE" )	{
+				ofFill();
+				ofSetColor(0xFFFFFF);
+				trullo.draw(0, 0);						
+			}		
+			if ( m.getAddress() == "/viewValenciaTRUE" )	{
+				ofFill();
+				ofSetColor(0xFFFFFF);
+				valencia.draw(0, 0);						
+			}		
 			if ( m.getAddress() == "/viewJasminTRUE" )	{
 				viewJasmin = true;
 			}		

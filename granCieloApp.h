@@ -79,18 +79,19 @@ class granCieloApp : public ofBaseApp{
 		int		lsystemGeneration;
 		
 		//#############	FBO  ########################
-        renderManager rm0, rm1, rm2, rm3, rm4, rm5, rm6, rm7, rm8, rm9;
-        renderManager rm10, rm11, rm12, rm13, rm14, rm15, rm16, rm17, rm18, rm19;		
-        renderManager rm20, rm21, rm22, rm23, rm24, rm25, rm26, rm27, rm28, rm29;		
-		ofRectangle quad0, quad1, quad2, quad3, quad4, quad5, quad6, quad7, quad8, quad9;		
-		ofRectangle quad10, quad11, quad12, quad13, quad14, quad15, quad16, quad17, quad18, quad19;				
-		ofRectangle quad20, quad21, quad22, quad23, quad24, quad25, quad26, quad27, quad28, quad29;				
+	renderManager rm0, rm1, rm2, rm3, rm4, rm5, rm6, rm7, rm8, rm9;
+	renderManager rm10, rm11, rm12, rm13, rm14, rm15, rm16, rm17, rm18, rm19;		
+	renderManager rm20, rm21, rm22, rm23, rm24, rm25, rm26, rm27, rm28, rm29;		
+	ofRectangle quad0, quad1, quad2, quad3, quad4, quad5, quad6, quad7, quad8, quad9;		
+	ofRectangle quad10, quad11, quad12, quad13, quad14, quad15, quad16, quad17, quad18, quad19;				
+	ofRectangle quad20, quad21, quad22, quad23, quad24, quad25, quad26, quad27, quad28, quad29;				
 
-		ofImage		charco, tejados, ventanaRoja, reloj, textura, tejadosInvierno, montanas, bosque, muroCasaAlta, tejadoCasaAlta;
-		ofImage		muroCasaDerecha, tejadosCasaDerecha, ventanaRota, flores, raton, ladrillo, mariposa, arbols, chimanea, burbujas;
-		ofImage		montanasBlancas, montanasRojas, casaRedondeada, campanario, casaDerecha, casaAqua, gotas, flore;
-		ofImage		muroCasaIzquierda, tejadosCasaIzquierda, tejadoCasaDerechaNueva, muroCasaDerechaNueva, rosa, jasmin, bar, ojo;
-	ofImage	barNuevo, casaXBar;
+	ofImage		charco, tejados, ventanaRoja, reloj, textura, tejadosInvierno, montanas, bosque, muroCasaAlta, tejadoCasaAlta;
+	ofImage		muroCasaDerecha, tejadosCasaDerecha, ventanaRota, flores, raton, ladrillo, mariposa, arbols, chimanea, burbujas;
+	ofImage		montanasBlancas, montanasRojas, casaRedondeada, campanario, casaDerecha, casaAqua, gotas, flore;
+	ofImage		muroCasaIzquierda, tejadosCasaIzquierda, tejadoCasaDerechaNueva, muroCasaDerechaNueva, rosa, jasmin, bar, ojo;
+	ofImage	barNuevo, casaXBar, tokyo, valencia, azucar, columna,paris, trullo;
+	
 
 		ofVideoPlayer 		ciudadDestruida, ciudaddestruidaconlluvia, illusion, ormigas, floresVideo, chanTiChan, pero, hormigas;
 
@@ -108,6 +109,7 @@ class granCieloApp : public ofBaseApp{
 		bool viewCasaGrande, viewCampanario, viewCasaDerecha, viewCasaAqua, viewGotas, viewCasasNegras;
 		bool viewCasaDerechaNueva, viewJasmin, viewPero, viewBar, viewOjo, viewBarNuevoTRUE, viewBarNuevoFALSE;
 		bool viewCasaXBar, viewBarNuevo, viewHormigas;
+	bool viewTokyo, viewValencia;
 		int  alphaFBO2, afbo6, afbo7, afbo8, afbo123, afbo15_17, afbo21_23;
 		
 		float xSolo, ySolo;
