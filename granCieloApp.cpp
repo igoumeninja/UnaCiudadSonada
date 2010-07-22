@@ -118,7 +118,7 @@ void granCieloApp::setup(){
 		rm6.allocateForNScreens(1, 500, 500); //the first dedicate the screens the other 2 are the dimension of the image or of the video
 		rm6.loadFromXml("xml/fboSettings6.xml");
 		quad6  = ofRectangle(1000,400, 200, 200);
-		rm7.allocateForNScreens(3, 500, 500); //the first dedicate the §§§screens the other 2 are the dimension of the image or of the video
+		rm7.allocateForNScreens(2, 500, 500); //the first dedicate the §§§screens the other 2 are the dimension of the image or of the video
 		rm7.loadFromXml("xml/fboSettings7.xml");
 		quad7  = ofRectangle(1000,400, 200, 200);
 		rm8.allocateForNScreens(2, 500, 500); //the first dedicate the screens the other 2 are the dimension of the image or of the video
@@ -207,7 +207,7 @@ void granCieloApp::setup(){
 		flores.loadImage("images/flores.png");	
 		raton.loadImage("images/raton.png");	
 		ladrillo.loadImage("images/ladrillo.png");
-		mariposa.loadImage("images/mariposa.png");	
+		mariposa.loadImage("images/mariposa100peque.png");	
 	    chimanea.loadImage("images/chimanea.jpg");	
 		arbols.loadImage("images/arbol.png");
 		burbujas.loadImage("images/burbujas.png");
@@ -235,6 +235,9 @@ void granCieloApp::setup(){
 		columna.loadImage("images/columna.png");		
 		paris.loadImage("images/paris.png");		
 		trullo.loadImage("images/trullo.png");		
+		indio.loadImage("images/indio.png");		
+		ultima.loadImage("images/ultima.png");		
+		tribunal.loadImage("images/tribunal.png");		
 		
 		//Video
 		ciudadDestruida.loadMovie("videos/ciudadDestruida.avi");		
@@ -260,15 +263,15 @@ void granCieloApp::setup(){
 	//                  Deseo
 	//
 	//
-	deseo1 = "Javi: akshfgaskfgadfg";
-	deseo2 = "Julia: pero no me jodas";
-	deseo3 = "Quiero aroz negro con ajo aceite";
-	deseo4 = "Menexedes kai zouboulia";
-	deseo5 = "Madre mia";		
+	deseo1 = "Maria: Ser cantante";
+	deseo2 = "Ana: Quiero Volar";
+	deseo3 = "Carlos: Que todos los dias sean fiesta";
+	deseo4 = "Victor: Desearia una ciudad moderna";
+	deseo5 = "Chanti: Que vuelva mi abuela Obasan";		
 	//
 	//
 	//
-	//##############################################
+	//##############################################ch
 	}	//	Deseo
 	{	
 	ofBackground(r8,g8,b8);
@@ -276,7 +279,8 @@ void granCieloApp::setup(){
 		
 	testFont.loadFont("Batang.ttf", 96, true, true, true);
 	deseosFont.loadFont("Chalkduster.ttf", 20, true, true, true);
-	deseosFontSmall.loadFont("Chalkduster.ttf", 10, true, true, true);
+	//deseosFontSmall.loadFont("Chalkduster.ttf", 10, true, true, true);
+	deseosFontSmall.loadFont("ComicSansMSBold.ttf", 10, true, true, true);		
 		
 	testFontSmall.loadFont("Batang.ttf", 36, true, true, true);
 	
@@ -499,14 +503,19 @@ void granCieloApp::update(){
 						
 		}	//	FBO alpha
 		{		
+			if ( m.getAddress() == "/viewTribunalTRUE" )	{
+				viewTribunal = true;
+			}		
+			if ( m.getAddress() == "/viewTribunalFALSE" )	{
+				viewTribunal = false;
+			}					
 			
 			if ( m.getAddress() == "/viewHormigasTRUE" )	{
 				viewHormigas = true;
 			}		
 			if ( m.getAddress() == "/viewHormigasFALSE" )	{
 				viewHormigas = false;
-			}					
-			
+			}								
 			if ( m.getAddress() == "/viewCasaXBarTRUE" )	{
 				viewCasaXBar = true;
 			}		
@@ -894,10 +903,21 @@ void granCieloApp::update(){
 			}		
 		}	//	Deseos
 		{
+			if ( m.getAddress() == "/viewUltimaTRUE" )	{
+				viewUltima = true;
+			}		
+			if ( m.getAddress() == "/viewUltimaFALSE" )	{
+				viewUltima = false;
+			}		
 			if ( m.getAddress() == "/viewAzucarTRUE" )	{
 				ofFill();
 				ofSetColor(0xFFFFFF);
 				azucar.draw(0, 0);						
+			}		
+			if ( m.getAddress() == "/viewIndioTRUE" )	{
+				ofFill();
+				ofSetColor(0xFFFFFF);
+				indio.draw(0, 0);						
 			}		
 			if ( m.getAddress() == "/viewColumnaTRUE" )	{
 				ofFill();
@@ -1502,20 +1522,34 @@ void granCieloApp::update(){
 				xSolo = m.getArgAsFloat(0);
 				ySolo = m.getArgAsFloat(1);
 				viewSoloChanTiChan = true;
-//				for( int i=1000; i<1000 + numMouseSketches; i++ ) {
-//					sketch[i].drawMouse(xSolo, ySolo, 0, r7, g7, b7, a7/3, mouseLines);	
-//				}			
 			}		
 			if ( m.getAddress() == "/soloChanTiChanFALSE" )		{
 				viewSoloChanTiChan = false;
+			}	
+			if ( m.getAddress() == "/lineaAmarillaTRUE" )		{
+				xLineaAmarilla = m.getArgAsFloat(0);
+				yLineaAmarilla = m.getArgAsFloat(1);
+				cout << xLineaAmarilla << endl;
+				viewLineaAmarilla = true;
 			}		
+			if ( m.getAddress() == "/lineaAmarillaFALSE" )		{
+				viewLineaAmarilla = false;
+			}	
+		
+			
 		}	//	sKeTch
 	}	
 }
 void granCieloApp::draw(){
 	if	(	viewSoloChanTiChan	)	{
 		for( int i=0; i<100; i++ ) {
-			sketch[i].drawMouse(xSolo, ySolo, 0, r7, g7, b7, a7, 0);	
+			sketch[i].drawMouse(xSolo, ySolo, 0, a7, g7, b7, a7, 0);	
+		}
+		
+	}
+	if	(	viewLineaAmarilla	)	{
+		for( int i=100; i<150; i++ ) {
+			sketch[i].drawMouse(xSolo, ySolo + 400, 0, 255, 255, 0, 22, 1);	
 		}
 		
 	}
@@ -1716,17 +1750,10 @@ void granCieloApp::draw(){
 					ofSetColor(0xFF0000);
 					ofLine(rm7.width, 0, 0, rm7.height);							
 				}																	
-				if (	viewMontanas	) {
+				if (	viewTribunal	) {
 					ofFill();
-					ofSetColor(255,255,255,afbo7);												
-					montanasRojas.draw(0,0);																		
-				}
-				if	(	viewSketchCasas	)	{
-					ofSetColor(0,0,0,20);
-					ofRect(0, 0, rm9.width, rm9.height);
-					for( int i=100; i<200; i++ ) {
-						sketch[i].drawMouse(ofRandom(110,500), ofRandom(0,500), 0, 55, 115, 195, 150, 1);	
-					}
+					ofSetColor(255,255,255,255);												
+					tribunal.draw(0,0);																		
 				}
 				
 				rm7.endOffscreenDraw();
@@ -2397,6 +2424,12 @@ void granCieloApp::draw(){
 	if	(bSnapshot)	{
 		takePictures();
 	}
+	if (viewUltima) {
+		ofFill();
+		ofSetColor(0xFFFFFF);
+		ultima.draw(0, 0);						
+	} // view Ultima Ciudad	
+	
 }
 void granCieloApp::syncStudies ()	{
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // GL_SRC_ALPHA_SATURATE,GL_ONE     GL_SRC_ALPHA, GL_ONE

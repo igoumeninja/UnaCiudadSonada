@@ -90,7 +90,7 @@ class granCieloApp : public ofBaseApp{
 	ofImage		muroCasaDerecha, tejadosCasaDerecha, ventanaRota, flores, raton, ladrillo, mariposa, arbols, chimanea, burbujas;
 	ofImage		montanasBlancas, montanasRojas, casaRedondeada, campanario, casaDerecha, casaAqua, gotas, flore;
 	ofImage		muroCasaIzquierda, tejadosCasaIzquierda, tejadoCasaDerechaNueva, muroCasaDerechaNueva, rosa, jasmin, bar, ojo;
-	ofImage	barNuevo, casaXBar, tokyo, valencia, azucar, columna,paris, trullo;
+	ofImage	barNuevo, casaXBar, tokyo, valencia, azucar, columna,paris, trullo, indio, ultima, tribunal;
 	
 
 		ofVideoPlayer 		ciudadDestruida, ciudaddestruidaconlluvia, illusion, ormigas, floresVideo, chanTiChan, pero, hormigas;
@@ -109,10 +109,10 @@ class granCieloApp : public ofBaseApp{
 		bool viewCasaGrande, viewCampanario, viewCasaDerecha, viewCasaAqua, viewGotas, viewCasasNegras;
 		bool viewCasaDerechaNueva, viewJasmin, viewPero, viewBar, viewOjo, viewBarNuevoTRUE, viewBarNuevoFALSE;
 		bool viewCasaXBar, viewBarNuevo, viewHormigas;
-	bool viewTokyo, viewValencia;
+	bool viewTokyo, viewValencia, viewUltima, viewLineaAmarilla, viewTribunal;
 		int  alphaFBO2, afbo6, afbo7, afbo8, afbo123, afbo15_17, afbo21_23;
 		
-		float xSolo, ySolo;
+		float xSolo, ySolo, xLineaAmarilla, yLineaAmarilla;
 		
 		
 		//############  Deseo   ###################
